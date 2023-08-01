@@ -1,8 +1,12 @@
-package com.example.githubtry
+package com.example.reciply.db
 
 import android.content.Context
+import com.example.githubtry.LocalDatabase
+import com.example.githubtry.UsersDao
+import com.example.githubtry.UsersDatabase
+import com.example.reciply.models.User
 
-class LocalDatabaseImpl(val context: Context) : LocalDatabase{
+class LocalDatabaseImpl(val context: Context) : LocalDatabase {
 
     private var dao : UsersDao
 
@@ -11,14 +15,14 @@ class LocalDatabaseImpl(val context: Context) : LocalDatabase{
         dao = db.getDao()
     }
 
-    override suspend fun insertRecipeToFav(recipe: Recipe) {
+    /*override suspend fun insertRecipeToFav(recipe: Recipe) {
         dao.insertRecipeToFav(recipe)
     }
 
     override suspend fun deleteRecipeFromFav(recipe: Recipe) {
         dao.deleteRecipeFromFav(recipe)
     }
-
+*/
     override suspend fun insertUser(user: User) {
         dao.insertUser(user)
     }

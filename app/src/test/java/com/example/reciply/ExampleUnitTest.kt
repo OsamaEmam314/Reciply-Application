@@ -1,4 +1,4 @@
-package com.example.reciplyapplication
+package com.example.reciply
 
 import org.junit.Test
 

@@ -1,15 +1,14 @@
 package com.example.githubtry
 
-import com.example.reciplyapplication.models.Recipe
-import com.example.reciplyapplication.models.User
+import com.example.reciply.models.User
 
 interface LocalDatabase {
 
     // fav list
-    suspend fun insertRecipeToFav(recipe: Recipe)
+ /*   suspend fun insertRecipeToFav(recipe: Recipe)
 
     suspend fun deleteRecipeFromFav(recipe: Recipe)
-
+*/
 
     // user
     suspend fun insertUser(user: User)

@@ -1,4 +1,4 @@
-package com.example.reciplyapplication.models
+package com.example.reciply.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -12,5 +12,5 @@ data class User (
     val email:String)
 
 {
-    var favRecipes = mutableListOf<Recipe>()
+    //var favRecipes = mutableListOf<Recipe>()
 }

@@ -1,6 +1,7 @@
 package com.example.githubtry
 
 import androidx.room.*
+import com.example.reciply.models.User
 
 @Dao
 interface UsersDao {
@@ -13,10 +14,10 @@ interface UsersDao {
 
 
     // for fav list
-    @Insert
+   /* @Insert
     suspend fun insertRecipeToFav(recipe: Recipe)
 
     @Delete
-    suspend fun deleteRecipeFromFav(recipe: Recipe)
+    suspend fun deleteRecipeFromFav(recipe: Recipe)*/
 
 }
