@@ -1,23 +1,8 @@
-package com.example.githubtry
+package com.example.reciply.db
 
-import androidx.room.*
-import com.example.reciply.models.User
+import androidx.room.Dao
 
 @Dao
 interface UsersDao {
-
-    @Insert
-    suspend fun insertUser(user: User)
-
-    @Delete
-    suspend fun deleteUser(user: User)
-
-
-    // for fav list
-   /* @Insert
-    suspend fun insertRecipeToFav(recipe: Recipe)
-
-    @Delete
-    suspend fun deleteRecipeFromFav(recipe: Recipe)*/
 
 }
