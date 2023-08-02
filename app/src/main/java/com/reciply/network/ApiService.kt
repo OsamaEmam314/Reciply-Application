@@ -7,10 +7,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-//    @GET("api/json/v1/1/search.php")
-//    suspend fun searchMealByName(@Query("s") mealName: String): MealResponse
-    @GET("lookup.php?i={idMeal}")
-    suspend fun getMealById(@Path("idMeal") MealID: String): Meal
-   // @GET("lookup.php?")
-    //suspend fun getMealById(@Query("i") MealID: String): Meal
+    @GET("search.php")
+    suspend fun searchMealByName(@Query("s") mealName: String): MealResponse
+
 }

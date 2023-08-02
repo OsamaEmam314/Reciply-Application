@@ -14,6 +14,6 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel= ViewModelProvider(this).get(ServiceViewModel::class.java)
-        viewModel.getMealById("52773")
+        viewModel.getMealById("a")
     }
 }

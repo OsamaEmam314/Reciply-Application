@@ -10,12 +10,13 @@ import com.reciply.network.ApiClient
 import kotlinx.coroutines.launch
 
 class ServiceViewModel:ViewModel() {
-    private val _MealBYid= MutableLiveData<Meal>()
-    val MealBYid: LiveData<Meal> =  _MealBYid
-    fun getMealById(id:String){
+    private val _MealListBYName= MutableLiveData<List<Meal>>()
+    val MealListBYNmae: LiveData<List<Meal>> =_MealListBYName
+    fun getMealById(Name:String){
         viewModelScope.launch {
-            val response=ApiClient.getMealById(id)
-            Log.d("asd->", "getMealById:${response.idMeal} ")
+            val response=ApiClient.getMealByName(Name)
+            Log.d("asd->", "listofMeals:$response ")
+            _MealListBYName.value=response.meals
 
         }
     }

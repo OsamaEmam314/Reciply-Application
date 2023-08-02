@@ -4,7 +4,7 @@ import com.reciply.data.Meal
 import com.reciply.data.MealResponse
 
 object ApiClient {
-    suspend fun getMealById(MealID: String):Meal{
-        return RetrofitHelper.retrofit.create(ApiService::class.java).getMealById(MealID)
+    suspend fun getMealByName(MealName: String):MealResponse{
+        return RetrofitHelper.retrofit.create(ApiService::class.java).searchMealByName(MealName)
     }
 }
