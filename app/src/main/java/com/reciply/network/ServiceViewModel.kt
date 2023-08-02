@@ -20,4 +20,14 @@ class ServiceViewModel:ViewModel() {
 
         }
     }
+
+    private val randomMeal=MutableLiveData<Meal>()
+    fun getRandomMeal(){
+        viewModelScope.launch {
+            val rand=ApiClient.getRandomMeal()
+            Log.d("asd->", "Random Meal:$rand ")
+            randomMeal.value=rand
+
+           }
+    }
 }
