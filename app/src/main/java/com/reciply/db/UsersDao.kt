@@ -1,4 +1,4 @@
-package com.example.reciply.db
+package com.reciply.db
 
 import androidx.room.Dao
 

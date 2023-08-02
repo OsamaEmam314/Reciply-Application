@@ -1,11 +1,12 @@
-package com.example.reciply
+package com.reciply
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.reciply.R
 
-class MainActivity : AppCompatActivity() {
+class RecipeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_recipe)
     }
 }
