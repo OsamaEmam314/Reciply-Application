@@ -12,10 +12,10 @@ import kotlinx.coroutines.launch
 class ServiceViewModel:ViewModel() {
     private val _MealBYid= MutableLiveData<Meal>()
     val MealBYid: LiveData<Meal> =  _MealBYid
-    fun getMealById(){
+    fun getMealById(id:String){
         viewModelScope.launch {
-            val response=ApiClient.getMealById("52772")
-            Log.d("asd->", "getMealById:${response.strArea} ")
+            val response=ApiClient.getMealById(id)
+            Log.d("asd->", "getMealById:${response.idMeal} ")
 
         }
     }
