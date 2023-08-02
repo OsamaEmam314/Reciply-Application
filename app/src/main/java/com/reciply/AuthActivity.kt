@@ -15,5 +15,6 @@ class AuthActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         viewModel= ViewModelProvider(this).get(ServiceViewModel::class.java)
         viewModel.getMealById("a")
+        viewModel.getRandomMeal()
     }
 }
