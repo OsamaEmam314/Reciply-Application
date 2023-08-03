@@ -8,7 +8,7 @@ object ApiClient {
         return RetrofitHelper.retrofit.create(ApiService::class.java).searchMealByName(MealName)
     }
 
-    suspend fun getRandomMeal():Meal{
+    suspend fun getRandomMeal():MealResponse{
         return RetrofitHelper.retrofit.create(ApiService::class.java).getRandomMeal()
         }
 }

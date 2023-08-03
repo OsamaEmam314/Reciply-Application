@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 class ServiceViewModel:ViewModel() {
     private val _MealListBYName= MutableLiveData<List<Meal>>()
     val MealListBYNmae: LiveData<List<Meal>> =_MealListBYName
+    private val randomMeal=MutableLiveData<Meal?>()
     fun getMealById(Name:String){
         viewModelScope.launch {
             val response=ApiClient.getMealByName(Name)
@@ -21,12 +22,13 @@ class ServiceViewModel:ViewModel() {
         }
     }
 
-    private val randomMeal=MutableLiveData<Meal>()
+
     fun getRandomMeal(){
         viewModelScope.launch {
             val rand=ApiClient.getRandomMeal()
-            Log.d("asd->", "Random Meal:$rand ")
-            randomMeal.value=rand
+            val randomrecipe=rand.meals.randomOrNull()
+            Log.d("random->", "Random Meal:${randomrecipe} ")
+            randomMeal.value=randomrecipe
 
            }
     }
