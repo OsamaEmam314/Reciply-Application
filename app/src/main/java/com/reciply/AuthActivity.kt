@@ -28,8 +28,8 @@ class AuthActivity : AppCompatActivity() {
         {
             finish()
         }
-      /*  else{
+        else{
             super.onBackPressed()
-        }*/
+        }
     }
 }
