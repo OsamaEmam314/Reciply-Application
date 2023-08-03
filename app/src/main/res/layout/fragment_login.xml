@@ -19,7 +19,8 @@
         app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtlayout_Email_login">
+        app:layout_constraintTop_toBottomOf="@+id/txtlayout_Email_login"
+        app:startIconDrawable="@drawable/baseline_password_24">
 
         <EditText
             android:id="@+id/txtInput_Password_Login"
@@ -60,13 +61,15 @@
         app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Txt_Login">
+        app:layout_constraintTop_toBottomOf="@+id/Txt_Login"
+        app:startIconDrawable="@drawable/baseline_email_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtInput_Email_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
+            android:isScrollContainer="false"
             android:shadowColor="@color/black"
             android:textColor="#0C0C0C"
             android:textColorHint="@color/Green_700" />
