@@ -17,7 +17,11 @@
         android:id="@+id/registerFragment2"
         android:name="com.reciply.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment2_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment2"
         android:name="com.reciply.SplashFragment"
