@@ -35,10 +35,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Meal Name"
-            android:textSize="@dimen/body_content"
+            android:textSize="@dimen/headline2"
             android:textColor="@color/Gray_900"
             android:maxLines="2"
-            android:fontFamily="@font/sourcesanspro_semibold"
+            android:fontFamily="@font/quicksand_bold"
+            android:paddingStart="10dp"/>
+
+        <TextView
+            android:id="@+id/txt_meal_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Meal Category"
+            android:textSize="@dimen/body_content"
+            android:textColor="@color/Green_700"
+            android:maxLines="2"
+            android:fontFamily="@font/quicksand_semibold"
             android:paddingStart="10dp"/>
     </LinearLayout>
 
