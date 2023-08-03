@@ -7,11 +7,10 @@
     tools:context="com.reciply.AuthActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host"
+        android:id="@+id/AuthNav_Host"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph_recipe"/>
-
+        app:navGraph="@navigation/nav_graph_auth" />
 </androidx.constraintlayout.widget.ConstraintLayout>
