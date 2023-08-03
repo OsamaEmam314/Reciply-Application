@@ -1,31 +1,43 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.reciply.SplashFragment" >
+    android:background="@color/Background_color"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.reciply.SplashFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="194dp"
-        tools:layout_editor_absoluteY="312dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="264dp"
-        tools:layout_editor_absoluteY="200dp" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="224dp"
-        android:layout_height="163dp"
-        android:src="@drawable/icon"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="37dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/img_animatedhat_splash"
+        android:layout_width="239dp"
+        android:layout_height="262dp"
+        android:src="@drawable/icon" />
+
+    <TextView
+        android:id="@+id/txt_ReciplyAnimated_splash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/flying_bird"
+        android:text="Reciply"
+        android:textColor="@color/Green_700"
+        android:textSize="80sp"
+        android:alpha="0"/>
+
+    <TextView
+        android:id="@+id/txt_sloganAnimated_splash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/eras_medium_itc"
+        android:text="Taste Made Easy!"
+        android:textColor="@color/Green_700"
+        android:textSize="25sp"
+        android:alpha="0"/>
+
+
+</LinearLayout>
