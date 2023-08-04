@@ -19,5 +19,9 @@
     <dimen name="padding_start">3dp</dimen>
     <dimen name="padding_end">3dp</dimen>
 
+    <dimen name="corner_radius_item">30dp</dimen>
+    <dimen name="corner_radius">50dp</dimen>
+    <dimen name="elevation">20dp</dimen>
+
 
 </resources>
