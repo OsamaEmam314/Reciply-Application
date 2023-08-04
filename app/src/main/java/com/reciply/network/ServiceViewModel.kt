@@ -13,6 +13,10 @@ class ServiceViewModel:ViewModel() {
     private val _MealListBYName= MutableLiveData<List<Meal>>()
     val MealListBYNmae: LiveData<List<Meal>> =_MealListBYName
     private val randomMeal=MutableLiveData<Meal?>()
+
+    private val _listOfMealsByLetter=MutableLiveData<List<Meal>>()
+    val listOfMealsByLetter:LiveData<List<Meal>> = _listOfMealsByLetter
+
     fun getMealById(Name:String){
         viewModelScope.launch {
             val response=ApiClient.getMealByName(Name)
@@ -31,5 +35,12 @@ class ServiceViewModel:ViewModel() {
             randomMeal.value=randomrecipe
 
            }
+    }
+
+    fun listMealsByLetter(){
+        viewModelScope.launch {
+            val randLetter = ('A'..'Z').random()
+
+        }
     }
 }

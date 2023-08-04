@@ -11,4 +11,8 @@ object ApiClient {
     suspend fun getRandomMeal():MealResponse{
         return RetrofitHelper.retrofit.create(ApiService::class.java).getRandomMeal()
         }
+
+    suspend fun listMealsByLetter(randLetter:Char):MealResponse{
+        return RetrofitHelper.retrofit.create(ApiService::class.java).listMealsByLetter(randLetter)
+    }
 }

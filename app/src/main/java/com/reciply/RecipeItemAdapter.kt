@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.reciply.R
-import com.reciply.models.Recipe
+import com.reciply.data.Meal
 
-class RecipeItemAdapter(val data:List<Recipe>) : RecyclerView.Adapter<RecipeItemAdapter.MyViewHolder>() {
+class RecipeItemAdapter(val data:List<Meal>) : RecyclerView.Adapter<RecipeItemAdapter.MyViewHolder>() {
     private lateinit var context: Context
-    var onItemClick: ((Recipe)->Unit)?=null
+    var onItemClick: ((Meal)->Unit)?=null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val row= LayoutInflater.from(parent.context).inflate(R.layout.home_recipe_item,parent,false)
