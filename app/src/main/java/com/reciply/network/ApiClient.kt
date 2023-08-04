@@ -3,12 +3,12 @@ package com.reciply.network
 import com.reciply.data.Meal
 import com.reciply.data.MealResponse
 
-object ApiClient {
-    suspend fun getMealByName(MealName: String):MealResponse{
-        return RetrofitHelper.retrofit.create(ApiService::class.java).searchMealByName(MealName)
+object ApiClient:RemoteDataSource {
+    override suspend fun getMealByName(mealName: String):MealResponse{
+        return RetrofitHelper.retrofit.create(ApiService::class.java).searchMealByName(mealName)
     }
 
-    suspend fun getRandomMeal():MealResponse{
+    override suspend fun getRandomMeal():MealResponse{
         return RetrofitHelper.retrofit.create(ApiService::class.java).getRandomMeal()
         }
 }
