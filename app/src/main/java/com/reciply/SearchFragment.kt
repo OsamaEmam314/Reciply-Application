@@ -1,34 +1,38 @@
 package com.reciply
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.reciply.R
+import com.google.android.material.textfield.TextInputLayout
+import com.reciply.data.Meal
+import com.reciply.viewmodel.MealViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SearchFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val TAG  = "SearchFragment"
+    lateinit var etSearch: TextInputLayout
+    lateinit var recyclerSearch: RecyclerView
+    lateinit var searchViewModel: MealViewModel
+    lateinit var tvNoResults: TextView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var nav_controller: NavController
+    lateinit var adapterSearch: SearchRecyclerAdapter
+    var listOfMeals: List<Meal> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +42,62 @@ class SearchFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SearchFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        etSearch = view.findViewById(R.id.et_search_src_frg)
+        recyclerSearch = view.findViewById(R.id.recycler_search_frg)
+        tvNoResults = view.findViewById(R.id.tv_no_results_src_frg)
+
+        // check which controller
+        nav_controller = findNavController()
+        adapterSearch = SearchRecyclerAdapter(requireContext(), nav_controller)
+
+        searchViewModel= ViewModelProvider(this).get(MealViewModel::class.java)
+
+        // set adapter and recycler view
+        recyclerSearch.adapter = adapterSearch
+        recyclerSearch.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+
+        etSearch.editText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
             }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val searchText = s?.toString()
+                if (!etSearch.editText?.text.isNullOrEmpty()) {
+                    searchForRecipe(searchText ?: "")
+                    tvNoResults.visibility = View.GONE
+                } else {
+                    adapterSearch.clearData()
+                    tvNoResults.visibility = View.VISIBLE
+                }
+
+            }
+            override fun afterTextChanged(s: Editable?) {
+//                searchForRecipe(s.toString())
+            }
+        })
     }
+
+    fun searchForRecipe(seq: String){
+        // hit api and return results
+        searchViewModel.getMealByName(seq)
+        Log.d(TAG, "searchForRecipe: passed search")
+        searchViewModel.MealListBYNmae.observe(this){
+            if (it != null){
+                listOfMeals = it
+                adapterSearch.setData(listOfMeals)
+                tvNoResults.visibility = View.GONE
+            }else{
+                tvNoResults.visibility = View.VISIBLE
+                Toast.makeText(requireContext(), "No Results", Toast.LENGTH_SHORT).show()
+                adapterSearch.clearData()
+            }
+        }
+
+    }
+
 }
