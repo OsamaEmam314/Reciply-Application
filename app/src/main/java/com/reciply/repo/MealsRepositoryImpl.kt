@@ -11,4 +11,9 @@ class MealsRepositoryImpl(var remoteDataSource: RemoteDataSource):MealsRepositor
     override suspend fun getRemoteRandomMeal(): MealResponse {
         return remoteDataSource.getRandomMeal()
     }
+
+    override suspend fun getRemoteMealsList(randLetter:String): MealResponse {
+        return remoteDataSource.listMealsByLetter(randLetter)
+    }
+
 }

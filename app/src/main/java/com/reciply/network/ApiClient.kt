@@ -12,7 +12,7 @@ object ApiClient:RemoteDataSource {
         return RetrofitHelper.retrofit.create(ApiService::class.java).getRandomMeal()
         }
 
-    suspend fun listMealsByLetter(randLetter:Char):MealResponse{
+    override suspend fun listMealsByLetter(randLetter:String):MealResponse{
         return RetrofitHelper.retrofit.create(ApiService::class.java).listMealsByLetter(randLetter)
     }
 }

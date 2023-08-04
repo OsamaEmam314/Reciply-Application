@@ -19,7 +19,7 @@ interface ApiService {
 
 
 
-    @GET("search.php?f={randomLetter}")
-    suspend fun listMealsByLetter(@Path(value="randomLetter",encoded = true) randomLetter:Char):MealResponse
+    @GET("search.php")
+    suspend fun listMealsByLetter(@Query("f") randomLetter:String):MealResponse
 
 }

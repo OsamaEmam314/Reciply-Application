@@ -17,7 +17,6 @@ class MealViewModel(val mealsRepository: MealsRepository):ViewModel() {
     private val _listOfMealsByLetter=MutableLiveData<List<Meal>>()
     val listOfMealsByLetter:LiveData<List<Meal>> = _listOfMealsByLetter
 
-/*
     fun getMealById(Name:String){
         viewModelScope.launch {
             val response= ApiClient.getMealByName(Name)
@@ -26,7 +25,6 @@ class MealViewModel(val mealsRepository: MealsRepository):ViewModel() {
 
         }
     }
-*/
 
 
     fun getRandomMeal(){
@@ -41,8 +39,10 @@ class MealViewModel(val mealsRepository: MealsRepository):ViewModel() {
 
     fun listMealsByLetter(){
         viewModelScope.launch {
-            val randLetter = ('A'..'Z').random()
-
+            val randLetter = ('A'..'Z').random().toString()
+            val response=mealsRepository.getRemoteMealsList(randLetter)
+            Log.d("MyMeals->", "listofMeals:$response ")
+            _listOfMealsByLetter.value=response.meals
         }
     }
 }

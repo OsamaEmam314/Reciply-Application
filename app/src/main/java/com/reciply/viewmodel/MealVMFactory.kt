@@ -2,6 +2,7 @@ package com.reciply.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.reciply.network.MealViewModel
 import com.reciply.repo.MealsRepository
 
 class MealVMFactory(val mealsRepository: MealsRepository):ViewModelProvider.Factory {

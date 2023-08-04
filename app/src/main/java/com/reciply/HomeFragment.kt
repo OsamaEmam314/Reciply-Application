@@ -9,11 +9,12 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reciply.R
+import com.reciply.data.Meal
 import com.reciply.models.Recipe
 
 
 class HomeFragment : Fragment() {
-    val data: List<Recipe> = arrayListOf(
+    val data: List<Meal> = arrayListOf(
     )
 
     private lateinit var rv: RecyclerView

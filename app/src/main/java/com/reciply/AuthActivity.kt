@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.reciply.R
-import com.reciply.viewmodel.MealViewModel
 
 @Suppress("DEPRECATION")
 class AuthActivity : AppCompatActivity() {
