@@ -3,6 +3,7 @@
     <style name="Base.Theme.ReciplyApplication" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/Green_700</item>
     </style>
 
     <style name="Theme.ReciplyApplication" parent="Base.Theme.ReciplyApplication" />
@@ -11,6 +12,16 @@
         <item name="colorControlNormal">@color/white</item>   <!-- normal border color change as you wish -->
         <item name="colorControlActivated">@color/white</item> <!-- activated color change as you wish -->
         <item name="android:textColor">@color/Green_400</item> <!-- checkbox text color -->
+    </style>
+
+    <style name="EditTextThemeOverlay" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/Green_700</item>
+    </style>
+
+    <style name="HelperTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/Green_700</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold|italic</item>
     </style>
 
 </resources>

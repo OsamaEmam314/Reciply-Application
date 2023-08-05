@@ -1,4 +1,4 @@
-package com.reciply
+package com.reciply.search.view
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.reciply.R
-import com.reciply.data.Meal
+import com.reciply.data.data.models.Meal
+
 
 
 class SearchRecyclerAdapter(var context: Context, var navController: NavController): RecyclerView.Adapter<SearchRecyclerAdapter.MyViewHolder>() {
@@ -38,9 +39,15 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
 //        Glide.with(context).load(R.drawable.baseline_favorite_border_24).into(holder.imgFavIcon)
         holder.tvMealName.text = recipesResults[position].strMeal
 
+        holder.favIcon.setOnClickListener {
+            // check the status (if the recipe is in fav list or not) from db
+        }
 
         holder.itemView.setOnClickListener {
-
+            // navigate to the details fragment and send the id for this recipe
+            val action =
+                SearchFragmentDirections.actionSearchFragmentToRecipeDetailFragment(recipesResults[position].idMeal)
+            navController.navigate(action)
         }
     }
 

@@ -1,4 +1,4 @@
-package com.reciply.models
+package com.reciply.data.data.models
 
 import androidx.room.Entity
 import androidx.room.Index
