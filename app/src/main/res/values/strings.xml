@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="search_hint">Search any recipe</string>
+    <string name="fav_search_hint">Search in favorite recipes</string>
 </resources>
