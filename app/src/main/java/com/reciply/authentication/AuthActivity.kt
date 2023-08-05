@@ -1,4 +1,4 @@
-package com.reciply
+package com.reciply.authentication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

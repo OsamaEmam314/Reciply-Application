@@ -1,9 +1,7 @@
-package com.reciply.network
+package com.reciply.data.data.network
 
-import com.reciply.data.Meal
-import com.reciply.data.MealResponse
+import com.reciply.data.data.models.MealResponse
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -13,5 +11,5 @@ interface ApiService {
     suspend fun searchMealByName(@Query("s") mealName: String): MealResponse
 
     @GET("random.php")
-    suspend fun getRandomMeal():MealResponse
+    suspend fun getRandomMeal(): MealResponse
 }

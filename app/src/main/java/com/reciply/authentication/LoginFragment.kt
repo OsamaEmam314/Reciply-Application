@@ -1,4 +1,4 @@
-package com.reciply
+package com.reciply.authentication
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.example.reciply.R
+import com.reciply.RecipeActivity
 
 
 class LoginFragment : Fragment() {

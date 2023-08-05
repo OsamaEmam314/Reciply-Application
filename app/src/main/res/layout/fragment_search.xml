@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.reciply.SearchFragment"
+    tools:context="com.reciply.search.view.SearchFragment"
     android:background="@color/Background_color">
 
 
@@ -26,19 +26,26 @@
         android:layout_margin="@dimen/margin_top"
         app:startIconDrawable="@drawable/baseline_search_24"
         android:textColorHint="@color/Gray_400"
+        android:hint="@string/search_hint"
         app:boxBackgroundColor="@color/white"
         app:boxCornerRadiusBottomEnd="@dimen/corner_radius"
         app:boxCornerRadiusBottomStart="@dimen/corner_radius"
         app:boxCornerRadiusTopEnd="@dimen/corner_radius"
         app:boxCornerRadiusTopStart="@dimen/corner_radius"
         app:boxStrokeWidth="0dp"
-        android:elevation="@dimen/elevation">
+        android:elevation="@dimen/elevation"
+        app:helperTextTextAppearance="@color/Green_700"
+        app:hintTextAppearance="@color/Green_700"
+        app:boxStrokeColor="@color/Green_700"
+        android:theme="@style/EditTextThemeOverlay"
+        app:hintTextColor="@color/Green_700"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/search_hint"
-            android:textCursorDrawable="@color/Green_500"/>
+            android:textCursorDrawable="@drawable/edit_text_cursor_color"
+            android:textSelectHandle="@color/Green_700" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

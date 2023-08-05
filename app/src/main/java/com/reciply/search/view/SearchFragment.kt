@@ -1,4 +1,4 @@
-package com.reciply
+package com.reciply.search.view
 
 import android.os.Bundle
 import android.text.Editable
@@ -10,17 +10,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.reciply.R
 import com.google.android.material.textfield.TextInputLayout
-import com.reciply.data.Meal
+import com.reciply.data.data.local.LocalDatabaseImpl
+import com.reciply.data.data.models.Meal
+import com.reciply.data.data.network.ApiClient
+import com.reciply.repo.MealsRepositoryImpl
+import com.reciply.search.SearchViewModel
+import com.reciply.viewmodel.MealVMFactory
 import com.reciply.viewmodel.MealViewModel
 
 class SearchFragment : Fragment() {
@@ -49,11 +51,14 @@ class SearchFragment : Fragment() {
         recyclerSearch = view.findViewById(R.id.recycler_search_frg)
         tvNoResults = view.findViewById(R.id.tv_no_results_src_frg)
 
-        // check which controller
+        // check which controller *********************************
         nav_controller = findNavController()
         adapterSearch = SearchRecyclerAdapter(requireContext(), nav_controller)
 
-        searchViewModel= ViewModelProvider(this).get(MealViewModel::class.java)
+        // need to change the call to use factory **************************
+//        searchViewModel= ViewModelProvider(this).get(MealViewModel::class.java)
+//        getSearchViewModelReady()
+        getViewModelReady()
 
         // set adapter and recycler view
         recyclerSearch.adapter = adapterSearch
@@ -98,6 +103,18 @@ class SearchFragment : Fragment() {
             }
         }
 
+    }
+
+//    private fun getSearchViewModelReady(){
+//        val mealsFactory = MealVMFactory(
+//            MealsRepositoryImpl(ApiClient, LocalDatabaseImpl(requireContext().applicationContext))
+//        )  // send instance of Imp for repo
+//        searchViewModel = ViewModelProvider(this, mealsFactory).get(SearchViewModel::class.java)
+//    }
+
+    private fun getViewModelReady(){
+        val mealsFcctory = MealVMFactory(MealsRepositoryImpl(ApiClient))
+        searchViewModel = ViewModelProvider(this, mealsFcctory).get(MealViewModel::class.java)
     }
 
 }
