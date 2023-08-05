@@ -38,7 +38,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/shadow_2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -58,6 +58,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/headline1"
                 android:textStyle="bold"
+                android:fontFamily="@font/quicksand_bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/img_fav_icon_search_frg"
                 app:layout_constraintHorizontal_bias="0.0"
