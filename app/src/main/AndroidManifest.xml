@@ -19,7 +19,7 @@
 
         </activity>
         <activity
-            android:name="com.reciply.AuthActivity"
+            android:name="com.reciply.authentication.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

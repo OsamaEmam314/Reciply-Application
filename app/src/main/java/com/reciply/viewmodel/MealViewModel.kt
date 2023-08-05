@@ -1,11 +1,13 @@
 package com.reciply.network
+package com.reciply.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.reciply.data.Meal
+import com.reciply.data.data.models.Meal
+import com.reciply.data.data.network.ApiClient
 import com.reciply.repo.MealsRepository
 import kotlinx.coroutines.launch
 
@@ -17,7 +19,7 @@ class MealViewModel(val mealsRepository: MealsRepository):ViewModel() {
     private val _listOfMealsByLetter=MutableLiveData<List<Meal>>()
     val listOfMealsByLetter:LiveData<List<Meal>> = _listOfMealsByLetter
 
-    fun getMealById(Name:String){
+    fun getMealByName(Name:String){
         viewModelScope.launch {
             val response= ApiClient.getMealByName(Name)
             Log.d("asd->", "listofMeals:$response ")
@@ -45,4 +47,3 @@ class MealViewModel(val mealsRepository: MealsRepository):ViewModel() {
             _listOfMealsByLetter.value=response.meals
         }
     }
-}

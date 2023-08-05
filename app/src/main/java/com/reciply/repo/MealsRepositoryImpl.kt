@@ -1,7 +1,10 @@
 package com.reciply.repo
 
-import com.reciply.data.MealResponse
-import com.reciply.network.RemoteDataSource
+import androidx.lifecycle.LiveData
+import com.reciply.data.data.local.LocalDatabase
+import com.reciply.data.data.models.Meal
+import com.reciply.data.data.models.MealResponse
+import com.reciply.data.data.network.RemoteDataSource
 
 class MealsRepositoryImpl(var remoteDataSource: RemoteDataSource):MealsRepository {
     override suspend fun getRemoteMealByName(mealName: String): MealResponse {
@@ -16,4 +19,17 @@ class MealsRepositoryImpl(var remoteDataSource: RemoteDataSource):MealsRepositor
         return remoteDataSource.listMealsByLetter(randLetter)
     }
 
+
+    // fav list (local db)
+//    override suspend fun insertRecipeToFav(userID: Int, recipeId: String) {
+//        localDataSource.insertRecipeToFav(userID, recipeId)
+//    }
+//
+//    override suspend fun deleteRecipeFromFav(userId: Int, recipeId: String) {
+//        localDataSource.deleteRecipeFromFav(userId, recipeId)
+//    }
+//
+//    override suspend fun getUserFavList(userID: Int): LiveData<List<Meal>> {
+//        return localDataSource.getUserFavList(userID)
+//    }
 }

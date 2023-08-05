@@ -6,7 +6,7 @@
     app:startDestination="@id/splashFragment2">
     <fragment
         android:id="@+id/loginFragment2"
-        android:name="com.reciply.LoginFragment"
+        android:name="com.reciply.authentication.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment2"
-        android:name="com.reciply.RegisterFragment"
+        android:name="com.reciply.authentication.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
