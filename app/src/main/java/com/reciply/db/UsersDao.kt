@@ -18,15 +18,8 @@ interface UsersDao {
     @Delete
     suspend fun deleteUser(user: User)
     @Query("SELECT * FROM User WHERE email = :userEmail")
-    suspend fun getUserByEmail(userEmail: String): LiveData<User?>
+    fun getUserByEmail(userEmail: String): LiveData<User?>
 
     // fav list
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRecipeToFav(userID: Int, recipeId: String)
 
-    @Delete
-    suspend fun deleteRecipeFromFav(userId: Int, recipeId: String)
-
-    @Query("SELECT idMeal FROM UserFavList WHERE idUser = :userID" )
-    suspend fun getUserFavList(userID: Int) : LiveData<List<Meal>>
 }

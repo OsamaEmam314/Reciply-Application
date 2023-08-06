@@ -27,15 +27,4 @@ class LocalDatabaseImpl(context: Context): LocalDatabase {
         return dao.getUserByEmail(userEmail)
     }
 
-    override suspend fun insertRecipeToFav(userId: Int, recipeId: String) {
-        dao.insertRecipeToFav(userId, recipeId)
-    }
-
-    override suspend fun deleteRecipeFromFav(userId: Int, recipeId: String) {
-        dao.deleteRecipeFromFav(userId, recipeId)
-    }
-
-    override suspend fun getUserFavList(userID: Int): LiveData<List<Meal>> {
-        return dao.getUserFavList(userID)
-    }
 }

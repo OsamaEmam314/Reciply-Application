@@ -7,6 +7,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.reciply.R
+import com.reciply.data.models.User
+import com.reciply.db.UsersDatabase
 
 @Suppress("DEPRECATION")
 class AuthActivity : AppCompatActivity() {
@@ -19,6 +21,7 @@ class AuthActivity : AppCompatActivity() {
         //viewModel= ViewModelProvider(this).get(MealViewModel::class.java)
         //viewModel.getMealById("a")
         //viewModel.getRandomMeal()
+        val userDao = UsersDatabase.getInstance(application).getDao()
          val navHostFragment = supportFragmentManager.findFragmentById(R.id.AuthNav_Host) as NavHostFragment
          navController = navHostFragment.navController
     }

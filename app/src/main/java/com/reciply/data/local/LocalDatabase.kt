@@ -13,10 +13,6 @@ interface LocalDatabase {
     suspend fun getUserByEmail(userEmail: String): LiveData<User?>
 
     // fav list
-    suspend fun insertRecipeToFav(userId: Int, recipeId: String)
 
-    suspend fun deleteRecipeFromFav(userId: Int, recipeId: String)
-
-    suspend fun getUserFavList(userID: Int) : LiveData<List<Meal>>
 
 }
