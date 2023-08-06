@@ -45,9 +45,9 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
 
         holder.itemView.setOnClickListener {
             // navigate to the details fragment and send the id for this recipe
-            val action =
+          /*  val action =
                 SearchFragmentDirections.actionSearchFragmentToRecipeDetailFragment(recipesResults[position].idMeal)
-            navController.navigate(action)
+            navController.navigate(action)*/
         }
     }
 
