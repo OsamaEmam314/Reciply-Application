@@ -25,7 +25,7 @@
 
 
             <ImageView
-                android:id="@+id/img_meal_fav_frg"
+                android:id="@+id/img_meal_src_frg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
@@ -48,7 +48,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/tv_meal_name_fav_frg"
+                android:id="@+id/tv_meal_name_src_frg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -60,18 +60,18 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/quicksand_bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/img_fav_icon_search_frg"
+                app:layout_constraintEnd_toEndOf="@id/img_fav_icon_src_frg"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/img_meal_fav_frg"
-                app:layout_constraintTop_toBottomOf="@id/img_fav_icon_search_frg" />
+                app:layout_constraintStart_toStartOf="@+id/img_meal_src_frg"
+                app:layout_constraintTop_toBottomOf="@id/img_fav_icon_src_frg" />
 
             <CheckBox
-                android:id="@+id/img_fav_icon_search_frg"
+                android:id="@+id/img_fav_icon_src_frg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/selector_fav_icon"
                 android:theme="@style/fav_checkbox"
-                app:layout_constraintBottom_toBottomOf="@+id/img_meal_fav_frg"
+                app:layout_constraintBottom_toBottomOf="@+id/img_meal_src_frg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.957"
                 app:layout_constraintStart_toStartOf="parent"
