@@ -1,6 +1,5 @@
 package com.reciply.search.view
 
-import MealViewModel
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -18,16 +17,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reciply.R
 import com.google.android.material.textfield.TextInputLayout
-import com.reciply.data.models.Meal
-import com.reciply.data.network.ApiClient
+import com.reciply.data.data.local.LocalDatabaseImpl
+import com.reciply.data.data.models.Meal
+import com.reciply.data.data.network.ApiClient
 import com.reciply.repo.MealsRepositoryImpl
-import com.reciply.viewmodel.MealVMFactory
+import com.reciply.search.repo.SearchRepo
+import com.reciply.search.repo.SearchRepoImpl
+import com.reciply.search.viewModel.SearchVMFactory
+import com.reciply.search.viewModel.SearchViewModel
 
 class SearchFragment : Fragment() {
     private val TAG  = "SearchFragment"
     lateinit var etSearch: TextInputLayout
     lateinit var recyclerSearch: RecyclerView
-    lateinit var searchViewModel: MealViewModel
+    lateinit var searchViewModel: SearchViewModel
     lateinit var tvNoResults: TextView
 
     lateinit var nav_controller: NavController
@@ -55,8 +58,7 @@ class SearchFragment : Fragment() {
 
         // need to change the call to use factory **************************
 //        searchViewModel= ViewModelProvider(this).get(MealViewModel::class.java)
-//        getSearchViewModelReady()
-        getViewModelReady()
+        getSearchViewModelReady()
 
         // set adapter and recycler view
         recyclerSearch.adapter = adapterSearch
@@ -89,7 +91,7 @@ class SearchFragment : Fragment() {
         // hit api and return results
         searchViewModel.getMealByName(seq)
         Log.d(TAG, "searchForRecipe: passed search")
-        searchViewModel.MealListBYNmae.observe(this){
+        searchViewModel.mealList.observe(this){
             if (it != null){
                 listOfMeals = it
                 adapterSearch.setData(listOfMeals)
@@ -103,16 +105,11 @@ class SearchFragment : Fragment() {
 
     }
 
-//    private fun getSearchViewModelReady(){
-//        val mealsFactory = MealVMFactory(
-//            MealsRepositoryImpl(ApiClient, LocalDatabaseImpl(requireContext().applicationContext))
-//        )  // send instance of Imp for repo
-//        searchViewModel = ViewModelProvider(this, mealsFactory).get(SearchViewModel::class.java)
-//    }
-
-    private fun getViewModelReady(){
-        //val mealsFcctory = MealVMFactory(MealsRepositoryImpl(ApiClient))
-        //searchViewModel = ViewModelProvider(this, mealsFcctory).get(MealViewModel::class.java)
+    private fun getSearchViewModelReady(){
+        val mealsFactory = SearchVMFactory(
+            SearchRepoImpl(ApiClient, LocalDatabaseImpl(requireContext().applicationContext))
+        )  // send instance of Imp for repo
+        searchViewModel = ViewModelProvider(this, mealsFactory).get(SearchViewModel::class.java)
     }
 
 }

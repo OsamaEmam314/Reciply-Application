@@ -5,4 +5,5 @@
 
     <string name="search_hint">Search any recipe</string>
     <string name="fav_search_hint">Search in favorite recipes</string>
+    <string name="no_results">No results available</string>
 </resources>

@@ -53,7 +53,7 @@
         android:id="@+id/tv_no_results_src_frg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No results found"
+        android:text="@string/no_results"
         android:textSize="@dimen/body_content_2"
         android:fontFamily="@font/quicksand_semibold"
         android:visibility="gone"

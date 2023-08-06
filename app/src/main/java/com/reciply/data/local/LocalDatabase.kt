@@ -1,8 +1,4 @@
-package com.reciply.data.local
-
-import androidx.lifecycle.LiveData
-import com.reciply.data.models.Meal
-import com.reciply.data.models.User
+package com.reciply.data.data.local
 
 interface LocalDatabase {
     // user
@@ -12,10 +8,8 @@ interface LocalDatabase {
 
 
     // fav list
-    suspend fun insertRecipeToFav(userId: Int, recipeId: String)
-
-    suspend fun deleteRecipeFromFav(userId: Int, recipeId: String)
-
-    suspend fun getUserFavList(userID: Int) : LiveData<List<Meal>>
+    suspend fun getUserFavList(userID: Int) : List<String>
+    suspend fun insertIntoFavRecipe(userID: Int, mealID: String)
+    suspend fun deleteFromFavRecipe(userID: Int, mealID: String)
 
 }
