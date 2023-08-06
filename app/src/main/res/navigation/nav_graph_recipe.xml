@@ -27,8 +27,7 @@
         <argument
             android:name="recipe_id"
             app:argType="string" />
-        <argument android:name="recipe"
-            app:argType="com.reciply.data.models.Meal"/>
+
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
