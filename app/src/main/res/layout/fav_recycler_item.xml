@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_top"
-        app:cardCornerRadius="@dimen/corner_radius_item"
+
+        app:cardCornerRadius="20dp"
         app:elevation="@dimen/elevation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,13 +20,12 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
 
             <ImageView
                 android:id="@+id/img_meal_fav_frg"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background"
@@ -36,47 +35,34 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/shadow_2"
+                android:id="@+id/img_delete_fav_frg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_delete_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.904"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.099" />
 
             <TextView
                 android:id="@+id/tv_meal_name_fav_frg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
-                android:text="Meal Title"
-                android:textColor="@color/white"
-                android:textSize="@dimen/headline1"
-                android:textStyle="bold"
                 android:fontFamily="@font/quicksand_bold"
+                android:text="Meal Title"
+                android:textColor="@color/Gray_800"
+                android:textSize="@dimen/headline2"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/img_fav_icon_search_frg"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/img_meal_fav_frg"
-                app:layout_constraintTop_toBottomOf="@id/img_fav_icon_search_frg" />
-
-            <CheckBox
-                android:id="@+id/img_fav_icon_search_frg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@drawable/selector_fav_icon"
-                android:theme="@style/fav_checkbox"
-                app:layout_constraintBottom_toBottomOf="@+id/img_meal_fav_frg"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.957"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.19" />
+                app:layout_constraintStart_toStartOf="@+id/img_meal_fav_frg"
+                app:layout_constraintTop_toBottomOf="@+id/img_meal_fav_frg" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
