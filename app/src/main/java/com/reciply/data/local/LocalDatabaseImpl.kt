@@ -2,9 +2,9 @@ package com.reciply.data.data.local
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.reciply.data.data.models.Meal
+
 import com.reciply.db.UsersDatabase
-import com.reciply.data.data.models.User
+
 import com.reciply.db.RecipesDao
 import com.reciply.db.UsersDao
 

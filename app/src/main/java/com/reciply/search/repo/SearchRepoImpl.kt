@@ -1,8 +1,9 @@
 package com.reciply.search.repo
 
 import com.reciply.data.data.local.LocalDatabase
-import com.reciply.data.data.models.MealResponse
-import com.reciply.data.data.network.RemoteDataSource
+import com.reciply.data.models.MealResponse
+import com.reciply.data.network.RemoteDataSource
+
 import com.reciply.repo.MealsRepository
 
 class SearchRepoImpl(var remoteDataSource: RemoteDataSource, var localDataSource: LocalDatabase): SearchRepo {
