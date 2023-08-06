@@ -1,6 +1,6 @@
-package com.reciply.data.data.network
+package com.reciply.data.network
 
-import com.reciply.data.data.models.MealResponse
+import com.reciply.data.models.MealResponse
 
 interface RemoteDataSource {
     suspend fun getMealByName(mealName: String): MealResponse

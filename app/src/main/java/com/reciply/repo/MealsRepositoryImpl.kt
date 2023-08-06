@@ -1,6 +1,6 @@
 package com.reciply.repo
 
-import com.reciply.data.data.models.MealResponse
+import com.reciply.data.models.MealResponse
 import com.reciply.network.ApiClient
 import com.reciply.network.RemoteDataSource
 

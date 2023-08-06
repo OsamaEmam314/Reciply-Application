@@ -1,8 +1,8 @@
-package com.reciply.data.data.local
+package com.reciply.data.local
 
 import androidx.lifecycle.LiveData
-import com.reciply.data.data.models.Meal
-import com.reciply.data.data.models.User
+import com.reciply.data.models.Meal
+import com.reciply.data.models.User
 
 interface LocalDatabase {
     // user

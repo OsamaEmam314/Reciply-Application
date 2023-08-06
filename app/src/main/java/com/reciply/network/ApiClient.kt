@@ -1,7 +1,7 @@
 package com.reciply.network
 
-import com.reciply.data.data.models.MealResponse
-import com.reciply.data.data.network.RetrofitHelper
+import com.reciply.data.models.MealResponse
+import com.reciply.data.network.RetrofitHelper
 
 
 object ApiClient:RemoteDataSource {
@@ -9,11 +9,11 @@ object ApiClient:RemoteDataSource {
         return RetrofitHelper.retrofit.create(ApiService::class.java).searchMealByName(mealName)
     }
 
-    override suspend fun getRandomMeal():MealResponse{
+    override suspend fun getRandomMeal(): MealResponse {
         return RetrofitHelper.retrofit.create(ApiService::class.java).getRandomMeal()
         }
 
-    override suspend fun listMealsByLetter(randLetter:String):MealResponse{
+    override suspend fun listMealsByLetter(randLetter:String): MealResponse {
         return RetrofitHelper.retrofit.create(ApiService::class.java).listMealsByLetter(randLetter)
     }
 }

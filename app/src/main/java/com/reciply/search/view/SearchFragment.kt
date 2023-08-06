@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reciply.R
 import com.google.android.material.textfield.TextInputLayout
-import com.reciply.data.data.models.Meal
-import com.reciply.data.data.network.ApiClient
+import com.reciply.data.models.Meal
+import com.reciply.data.network.ApiClient
 import com.reciply.repo.MealsRepositoryImpl
 import com.reciply.viewmodel.MealVMFactory
 

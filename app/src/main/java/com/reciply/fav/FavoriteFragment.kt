@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reciply.R
 import com.google.android.material.textfield.TextInputLayout
-import com.reciply.data.data.models.Meal
+import com.reciply.data.models.Meal
 import com.reciply.search.view.SearchRecyclerAdapter
 
 class FavoriteFragment : Fragment() {

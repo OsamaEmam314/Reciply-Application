@@ -6,8 +6,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.reciply.data.data.models.Meal
-import com.reciply.data.data.models.User
+import com.reciply.data.models.Meal
+import com.reciply.data.models.User
 
 @Dao
 interface UsersDao {

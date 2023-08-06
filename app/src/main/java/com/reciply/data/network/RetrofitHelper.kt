@@ -1,4 +1,4 @@
-package com.reciply.data.data.network
+package com.reciply.data.network
 
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit

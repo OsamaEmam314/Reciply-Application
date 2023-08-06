@@ -1,10 +1,10 @@
-package com.reciply.data.data.local
+package com.reciply.data.local
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.reciply.data.data.models.Meal
+import com.reciply.data.models.Meal
 import com.reciply.db.UsersDatabase
-import com.reciply.data.data.models.User
+import com.reciply.data.models.User
 import com.reciply.db.UsersDao
 
 

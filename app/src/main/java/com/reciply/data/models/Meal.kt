@@ -1,4 +1,4 @@
-package com.reciply.data.data.models
+package com.reciply.data.models
 
 data class Meal(
     val dateModified: Any,

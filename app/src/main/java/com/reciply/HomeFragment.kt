@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.reciply.R
-import com.reciply.data.data.models.Meal
+import com.reciply.data.models.Meal
 import com.reciply.network.ApiClient
 import com.reciply.repo.MealsRepositoryImpl
 import com.reciply.viewmodel.MealVMFactory
