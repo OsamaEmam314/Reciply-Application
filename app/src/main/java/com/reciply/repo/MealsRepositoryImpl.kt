@@ -6,7 +6,7 @@ import com.reciply.data.data.models.Meal
 import com.reciply.data.data.models.MealResponse
 import com.reciply.data.data.network.RemoteDataSource
 
-class MealsRepositoryImpl(var remoteDataSource: RemoteDataSource):MealsRepository {
+class MealsRepositoryImpl(var remoteDataSource: RemoteDataSource, var localDataSource: LocalDatabase):MealsRepository {
     override suspend fun getRemoteMealByName(mealName: String): MealResponse {
         return remoteDataSource.getMealByName(mealName)
     }
@@ -24,7 +24,7 @@ class MealsRepositoryImpl(var remoteDataSource: RemoteDataSource):MealsRepositor
 //        localDataSource.deleteRecipeFromFav(userId, recipeId)
 //    }
 //
-//    override suspend fun getUserFavList(userID: Int): LiveData<List<Meal>> {
+//    override suspend fun getUserFavList(userID: Int): LiveData<List<String>> {
 //        return localDataSource.getUserFavList(userID)
 //    }
 }

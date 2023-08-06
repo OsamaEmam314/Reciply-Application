@@ -3,7 +3,6 @@ package com.reciply.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.reciply.repo.MealsRepository
-import com.reciply.search.SearchViewModel
 
 class MealVMFactory(val mealsRepository: MealsRepository):ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

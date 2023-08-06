@@ -62,8 +62,8 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
     }
 
     class MyViewHolder(row: View): RecyclerView.ViewHolder(row) {
-        var imgMeal: ImageView = row.findViewById(R.id.img_meal_search_frg)
-        var tvMealName: TextView = row.findViewById(R.id.tv_meal_name_search_frg)
+        var imgMeal: ImageView = row.findViewById(R.id.img_meal_fav_frg)
+        var tvMealName: TextView = row.findViewById(R.id.tv_meal_name_fav_frg)
 //        var imgFavIcon: ImageView = row.findViewById(R.id.img_fav_icon_search_frg)
         var favIcon : CheckBox = row.findViewById(R.id.img_fav_icon_search_frg)
     }
