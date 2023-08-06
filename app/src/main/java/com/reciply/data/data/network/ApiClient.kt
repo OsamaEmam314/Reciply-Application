@@ -1,6 +1,7 @@
 package com.reciply.data.data.network
 
 import com.reciply.data.data.models.MealResponse
+import com.reciply.network.ApiService
 
 object ApiClient: RemoteDataSource {
     override suspend fun getMealByName(mealName: String): MealResponse {
@@ -10,4 +11,8 @@ object ApiClient: RemoteDataSource {
     override suspend fun getRandomMeal(): MealResponse {
         return RetrofitHelper.retrofit.create(ApiService::class.java).getRandomMeal()
         }
+
+    override suspend fun listMealsByLetter(randLetter: String): MealResponse {
+        return RetrofitHelper.retrofit.create(ApiService::class.java).listMealsByLetter(randLetter)
+    }
 }

@@ -1,5 +1,3 @@
-package com.reciply.network
-package com.reciply.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -12,38 +10,38 @@ import com.reciply.repo.MealsRepository
 import kotlinx.coroutines.launch
 
 class MealViewModel(val mealsRepository: MealsRepository):ViewModel() {
-    private val _MealListBYName= MutableLiveData<List<Meal>>()
-    val MealListBYNmae: LiveData<List<Meal>> =_MealListBYName
-    private val randomMeal=MutableLiveData<Meal?>()
+    private val _MealListBYName = MutableLiveData<List<Meal>>()
+    val MealListBYNmae: LiveData<List<Meal>> = _MealListBYName
 
-    private val _listOfMealsByLetter=MutableLiveData<List<Meal>>()
-    val listOfMealsByLetter:LiveData<List<Meal>> = _listOfMealsByLetter
+    private val _randomMeal = MutableLiveData<Meal>()
+    val randomMeal: LiveData<Meal> = _randomMeal
 
-    fun getMealByName(Name:String){
+    private val _listOfMealsByLetter = MutableLiveData<List<Meal>>()
+    val listOfMealsByLetter: LiveData<List<Meal>> = _listOfMealsByLetter
+
+    fun getMealByName(Name: String) {
         viewModelScope.launch {
-            val response= ApiClient.getMealByName(Name)
+            val response = ApiClient.getMealByName(Name)
             Log.d("asd->", "listofMeals:$response ")
-            _MealListBYName.value=response.meals
+            _MealListBYName.value = response.meals
 
         }
     }
 
 
-    fun getRandomMeal(){
+    fun getRandomMeal() {
         viewModelScope.launch {
-            val rand= mealsRepository.getRemoteRandomMeal()
-            val randomrecipe=rand.meals.randomOrNull()
-            Log.d("random->", "Random Meal:${randomrecipe} ")
-            randomMeal.value=randomrecipe
-
-           }
+            val rand = mealsRepository.getRemoteRandomMeal()
+            Log.d("random->", "Random Meal:${rand.meals[0]} ")
+            _randomMeal.value=rand.meals[0]
+        }
     }
 
-    fun listMealsByLetter(){
+    fun listMealsByLetter() {
         viewModelScope.launch {
             val randLetter = ('A'..'Z').random().toString()
-            val response=mealsRepository.getRemoteMealsList(randLetter)
-            Log.d("MyMeals->", "listofMeals:$response ")
-            _listOfMealsByLetter.value=response.meals
+            val response = mealsRepository.getRemoteMealsList(randLetter)
+            _listOfMealsByLetter.value = response.meals
         }
     }
+}

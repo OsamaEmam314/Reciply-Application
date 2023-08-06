@@ -1,7 +1,7 @@
 package com.reciply.network
 
-import com.reciply.data.Meal
-import com.reciply.data.MealResponse
+
+import com.reciply.data.data.models.MealResponse
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,7 +15,7 @@ interface ApiService {
     suspend fun searchMealByName(@Query("s") mealName: String): MealResponse
 
     @GET("random.php")
-    suspend fun getRandomMeal():MealResponse
+    suspend fun getRandomMeal(): MealResponse
 
 
 

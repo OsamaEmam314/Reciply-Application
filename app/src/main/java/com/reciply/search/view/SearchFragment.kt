@@ -1,5 +1,6 @@
 package com.reciply.search.view
 
+import MealViewModel
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,13 +18,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reciply.R
 import com.google.android.material.textfield.TextInputLayout
-import com.reciply.data.data.local.LocalDatabaseImpl
 import com.reciply.data.data.models.Meal
 import com.reciply.data.data.network.ApiClient
 import com.reciply.repo.MealsRepositoryImpl
-import com.reciply.search.SearchViewModel
 import com.reciply.viewmodel.MealVMFactory
-import com.reciply.viewmodel.MealViewModel
 
 class SearchFragment : Fragment() {
     private val TAG  = "SearchFragment"
@@ -113,8 +111,8 @@ class SearchFragment : Fragment() {
 //    }
 
     private fun getViewModelReady(){
-        val mealsFcctory = MealVMFactory(MealsRepositoryImpl(ApiClient))
-        searchViewModel = ViewModelProvider(this, mealsFcctory).get(MealViewModel::class.java)
+        //val mealsFcctory = MealVMFactory(MealsRepositoryImpl(ApiClient))
+        //searchViewModel = ViewModelProvider(this, mealsFcctory).get(MealViewModel::class.java)
     }
 
 }

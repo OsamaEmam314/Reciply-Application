@@ -1,8 +1,8 @@
 package com.reciply.viewmodel
 
+import MealViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.reciply.network.MealViewModel
 import com.reciply.repo.MealsRepository
 import com.reciply.search.SearchViewModel
 

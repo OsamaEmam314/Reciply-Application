@@ -1,10 +1,11 @@
 package com.reciply.network
 
-import com.reciply.data.Meal
-import com.reciply.data.MealResponse
+import com.reciply.data.data.models.MealResponse
+import com.reciply.data.data.network.RetrofitHelper
+
 
 object ApiClient:RemoteDataSource {
-    override suspend fun getMealByName(mealName: String):MealResponse{
+    override suspend fun getMealByName(mealName: String): MealResponse {
         return RetrofitHelper.retrofit.create(ApiService::class.java).searchMealByName(mealName)
     }
 

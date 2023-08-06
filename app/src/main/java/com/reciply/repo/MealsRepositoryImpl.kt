@@ -1,10 +1,8 @@
 package com.reciply.repo
 
-import androidx.lifecycle.LiveData
-import com.reciply.data.data.local.LocalDatabase
-import com.reciply.data.data.models.Meal
 import com.reciply.data.data.models.MealResponse
-import com.reciply.data.data.network.RemoteDataSource
+import com.reciply.network.ApiClient
+import com.reciply.network.RemoteDataSource
 
 class MealsRepositoryImpl(var remoteDataSource: RemoteDataSource):MealsRepository {
     override suspend fun getRemoteMealByName(mealName: String): MealResponse {
