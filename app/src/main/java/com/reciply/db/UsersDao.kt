@@ -17,7 +17,8 @@ interface UsersDao {
 
     @Delete
     suspend fun deleteUser(user: User)
-
+    @Query("SELECT * FROM User WHERE email = :userEmail")
+    suspend fun getUserByEmail(userEmail: String): LiveData<User?>
 
     // fav list
     @Insert(onConflict = OnConflictStrategy.REPLACE)

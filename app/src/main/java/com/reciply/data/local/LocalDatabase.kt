@@ -6,10 +6,11 @@ import com.reciply.data.models.User
 
 interface LocalDatabase {
     // user
-//    suspend fun insertUser(user: User)
-//
-//    suspend fun deleteUser(user: User)
+    suspend fun insertUser(user: User)
 
+    suspend fun deleteUser(user: User)
+
+    suspend fun getUserByEmail(userEmail: String): LiveData<User?>
 
     // fav list
     suspend fun insertRecipeToFav(userId: Int, recipeId: String)

@@ -9,19 +9,23 @@ import com.reciply.db.UsersDao
 
 
 class LocalDatabaseImpl(context: Context): LocalDatabase {
-
     private lateinit var dao: UsersDao
     init {
         val db = UsersDatabase.getInstance(context)
         dao = db.getDao()
     }
-//    override suspend fun insertUser(user: User) {
-//        dao.insertUser(user)
-//    }
-//
-//    override suspend fun deleteUser(user: User) {
-//        dao.deleteUser(user)
-//    }
+
+    override suspend fun insertUser(user: User) {
+        dao.insertUser(user)
+    }
+
+    override suspend fun deleteUser(user: User) {
+        dao.deleteUser(user)
+    }
+
+    override suspend fun getUserByEmail(userEmail: String): LiveData<User?> {
+        return dao.getUserByEmail(userEmail)
+    }
 
     override suspend fun insertRecipeToFav(userId: Int, recipeId: String) {
         dao.insertRecipeToFav(userId, recipeId)
