@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.reciply.fav.FavoriteFragment"
+        android:name="com.reciply.fav.view.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
     <fragment

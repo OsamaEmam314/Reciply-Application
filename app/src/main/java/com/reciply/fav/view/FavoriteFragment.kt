@@ -1,0 +1,99 @@
+package com.reciply.fav.view
+
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.reciply.R
+import com.google.android.material.textfield.TextInputLayout
+import com.reciply.data.data.local.LocalDatabaseImpl
+import com.reciply.data.models.Meal
+import com.reciply.data.network.ApiClient
+import com.reciply.fav.repo.FavRepo
+import com.reciply.fav.repo.FavRepoImpl
+import com.reciply.fav.viewModel.FavoriteVMFactory
+import com.reciply.fav.viewModel.FavoriteViewModel
+import com.reciply.search.repo.SearchRepoImpl
+import com.reciply.search.view.SearchRecyclerAdapter
+import com.reciply.search.viewModel.SearchVMFactory
+import com.reciply.search.viewModel.SearchViewModel
+
+class FavoriteFragment : Fragment() {
+
+    private val TAG  = "FavoriteFragment"
+    lateinit var recyclerFav: RecyclerView
+    //    var listOfFav: List<Meal> = listOf()
+    lateinit var adapterFav: FavRecyclerAdapter
+
+    lateinit var nav_controller: NavController
+
+    lateinit var favoriteViewModel : FavoriteViewModel
+
+    lateinit var tvNoFavRecipes: TextView
+    var currentUserId: Int = 1 // need to take it from the session
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_favorite, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recyclerFav = view.findViewById(R.id.recycler_fav_frg)
+        tvNoFavRecipes = view.findViewById(R.id.tv_no_fav_meals_fav_frg)
+
+        nav_controller = findNavController()
+
+        getFavoriteViewModelReady()
+
+        adapterFav = FavRecyclerAdapter(requireContext(), nav_controller, favoriteViewModel, currentUserId)
+        recyclerFav.adapter = adapterFav
+        recyclerFav.layoutManager = GridLayoutManager(requireContext(), 2)
+
+
+    }
+
+    private fun getFavoriteViewModelReady(){
+        val factory = FavoriteVMFactory(
+            FavRepoImpl(ApiClient, LocalDatabaseImpl(requireContext().applicationContext))
+        )  // send instance of Imp for repo
+        favoriteViewModel = ViewModelProvider(this, factory).get(FavoriteViewModel::class.java)
+    }
+
+    private fun showCustomDialog(){
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.custom_dialog)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val btnDelete: Button = dialog.findViewById(R.id.btn_delete_dialog)
+        val btnCancel: Button = dialog.findViewById(R.id.btn_cancel_dialog)
+
+        btnDelete.setOnClickListener {
+            // delete recipe from db
+        }
+        btnCancel.setOnClickListener {
+            // hide the dialog
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+}

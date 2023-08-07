@@ -19,13 +19,4 @@ interface UsersDao {
     suspend fun deleteUser(user: User)
 
 
-    // fav list
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRecipeToFav(userID: Int, recipeId: String)
-
-    @Delete
-    suspend fun deleteRecipeFromFav(userId: Int, recipeId: String)
-
-    @Query("SELECT idMeal FROM UserFavList WHERE idUser = :userID" )
-    suspend fun getUserFavList(userID: Int) : LiveData<List<Meal>>
 }

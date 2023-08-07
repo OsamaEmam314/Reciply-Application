@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.reciply.R
 import com.reciply.data.models.Meal
-
 
 
 class SearchRecyclerAdapter(var context: Context, var navController: NavController): RecyclerView.Adapter<SearchRecyclerAdapter.MyViewHolder>() {
@@ -48,6 +48,7 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
           /*  val action =
                 SearchFragmentDirections.actionSearchFragmentToRecipeDetailFragment(recipesResults[position].idMeal)
             navController.navigate(action)*/
+            navController.navigate(R.id.recipeDetailFragment)
         }
     }
 

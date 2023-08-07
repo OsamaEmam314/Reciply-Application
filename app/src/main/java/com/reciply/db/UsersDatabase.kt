@@ -11,6 +11,7 @@ import com.reciply.data.models.UserFavList
 abstract class UsersDatabase: RoomDatabase() {
 
     abstract fun getDao(): UsersDao
+    abstract fun getRecipeDao(): RecipesDao
 
     companion object{
         @Volatile
@@ -20,7 +21,7 @@ abstract class UsersDatabase: RoomDatabase() {
                 INSTANCE ?: Room.databaseBuilder(
                     context.applicationContext,
                     UsersDatabase::class.java,
-                    "Users_Database",
+                    "users_database",
                 )
                     .fallbackToDestructiveMigration()
                     .build()

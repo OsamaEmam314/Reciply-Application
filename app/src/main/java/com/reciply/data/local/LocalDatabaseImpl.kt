@@ -1,20 +1,36 @@
-package com.reciply.data.local
+package com.reciply.data.data.local
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.reciply.data.models.Meal
+
 import com.reciply.db.UsersDatabase
-import com.reciply.data.models.User
+
+import com.reciply.db.RecipesDao
 import com.reciply.db.UsersDao
 
 
 class LocalDatabaseImpl(context: Context): LocalDatabase {
 
-    private lateinit var dao: UsersDao
+    private lateinit var daoUser: UsersDao
+    private lateinit var daoRecipe: RecipesDao
     init {
         val db = UsersDatabase.getInstance(context)
-        dao = db.getDao()
+        daoUser = db.getDao()
+        daoRecipe = db.getRecipeDao()
     }
+
+    override suspend fun getUserFavList(userID: Int): List<String> {
+        return daoRecipe.getUserFavList(userID)
+    }
+
+    override suspend fun insertIntoFavRecipe(userID: Int, mealID: String) {
+        daoRecipe.insertIntoFavRecipe(userID, mealID)
+    }
+
+    override suspend fun deleteFromFavRecipe(userID: Int, mealID: String) {
+        daoRecipe.deleteFromFavRecipe(userID, mealID)
+    }
+
 //    override suspend fun insertUser(user: User) {
 //        dao.insertUser(user)
 //    }
@@ -23,15 +39,4 @@ class LocalDatabaseImpl(context: Context): LocalDatabase {
 //        dao.deleteUser(user)
 //    }
 
-    override suspend fun insertRecipeToFav(userId: Int, recipeId: String) {
-        dao.insertRecipeToFav(userId, recipeId)
-    }
-
-    override suspend fun deleteRecipeFromFav(userId: Int, recipeId: String) {
-        dao.deleteRecipeFromFav(userId, recipeId)
-    }
-
-    override suspend fun getUserFavList(userID: Int): LiveData<List<Meal>> {
-        return dao.getUserFavList(userID)
-    }
 }
