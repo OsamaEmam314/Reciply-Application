@@ -1,5 +1,7 @@
 package com.reciply.search.view
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -52,18 +55,19 @@ class SearchFragment : Fragment() {
         recyclerSearch = view.findViewById(R.id.recycler_search_frg)
         tvNoResults = view.findViewById(R.id.tv_no_results_src_frg)
 
-        // check which controller *********************************
+
         nav_controller = findNavController()
         adapterSearch = SearchRecyclerAdapter(requireContext(), nav_controller)
 
-        // need to change the call to use factory **************************
-//        searchViewModel= ViewModelProvider(this).get(MealViewModel::class.java)
         getSearchViewModelReady()
 
         // set adapter and recycler view
         recyclerSearch.adapter = adapterSearch
         recyclerSearch.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
+        etSearch.setOnClickListener {
+            tvNoResults.visibility = View.GONE
+        }
 
         etSearch.editText?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -77,12 +81,13 @@ class SearchFragment : Fragment() {
                     tvNoResults.visibility = View.GONE
                 } else {
                     adapterSearch.clearData()
+                    tvNoResults.text = "No results found"
                     tvNoResults.visibility = View.VISIBLE
                 }
 
             }
             override fun afterTextChanged(s: Editable?) {
-//                searchForRecipe(s.toString())
+
             }
         })
     }
@@ -90,19 +95,19 @@ class SearchFragment : Fragment() {
     fun searchForRecipe(seq: String){
         // hit api and return results
         searchViewModel.getMealByName(seq)
-        Log.d(TAG, "searchForRecipe: passed search")
         searchViewModel.mealList.observe(this){
             if (it != null){
-                listOfMeals = it
-                adapterSearch.setData(listOfMeals)
                 tvNoResults.visibility = View.GONE
+//                listOfMeals = it
+//                adapterSearch.setData(listOfMeals)
+                adapterSearch.setData(it)
             }else{
+                tvNoResults.text = "No results found"
                 tvNoResults.visibility = View.VISIBLE
                 Toast.makeText(requireContext(), "No Results", Toast.LENGTH_SHORT).show()
                 adapterSearch.clearData()
             }
         }
-
     }
 
     private fun getSearchViewModelReady(){
@@ -111,5 +116,4 @@ class SearchFragment : Fragment() {
         )  // send instance of Imp for repo
         searchViewModel = ViewModelProvider(this, mealsFactory).get(SearchViewModel::class.java)
     }
-
 }

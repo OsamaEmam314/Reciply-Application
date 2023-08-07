@@ -1,4 +1,4 @@
-package com.reciply.fav
+package com.reciply.fav.view
 
 import android.app.Dialog
 import android.graphics.Color
@@ -10,24 +10,39 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
+import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reciply.R
 import com.google.android.material.textfield.TextInputLayout
+import com.reciply.data.data.local.LocalDatabaseImpl
 import com.reciply.data.models.Meal
+import com.reciply.data.network.ApiClient
+import com.reciply.fav.repo.FavRepo
+import com.reciply.fav.repo.FavRepoImpl
+import com.reciply.fav.viewModel.FavoriteVMFactory
+import com.reciply.fav.viewModel.FavoriteViewModel
+import com.reciply.search.repo.SearchRepoImpl
 import com.reciply.search.view.SearchRecyclerAdapter
+import com.reciply.search.viewModel.SearchVMFactory
+import com.reciply.search.viewModel.SearchViewModel
 
 class FavoriteFragment : Fragment() {
 
     private val TAG  = "FavoriteFragment"
-//    lateinit var etFavSearch: TextInputLayout
-//    lateinit var recyclerFav: RecyclerView
+    lateinit var recyclerFav: RecyclerView
+    //    var listOfFav: List<Meal> = listOf()
+    lateinit var adapterFav: FavRecyclerAdapter
 
-//    lateinit var nav_controller: NavController
-//    lateinit var adapterFav: SearchRecyclerAdapter
-//    var listOfFav: List<Meal> = listOf()
+    lateinit var nav_controller: NavController
+
+    lateinit var favoriteViewModel : FavoriteViewModel
+
+    lateinit var tvNoFavRecipes: TextView
+    var currentUserId: Int = 1 // need to take it from the session
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,17 +55,25 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        etFavSearch = view.findViewById(R.id.et_search_fav_frg)
-//        recyclerFav = view.findViewById(R.id.recycler_fav_frg)
+        recyclerFav = view.findViewById(R.id.recycler_fav_frg)
+        tvNoFavRecipes = view.findViewById(R.id.tv_no_fav_meals_fav_frg)
 
-//        nav_controller = findNavController()
-//
-//        adapterFav = SearchRecyclerAdapter(requireContext(), nav_controller)
-//        recyclerFav.adapter = adapterFav
+        nav_controller = findNavController()
 
-//        recyclerFav.layoutManager = GridLayoutManager(requireContext(), 2)
+        getFavoriteViewModelReady()
+
+        adapterFav = FavRecyclerAdapter(requireContext(), nav_controller, favoriteViewModel, currentUserId)
+        recyclerFav.adapter = adapterFav
+        recyclerFav.layoutManager = GridLayoutManager(requireContext(), 2)
 
 
+    }
+
+    private fun getFavoriteViewModelReady(){
+        val factory = FavoriteVMFactory(
+            FavRepoImpl(ApiClient, LocalDatabaseImpl(requireContext().applicationContext))
+        )  // send instance of Imp for repo
+        favoriteViewModel = ViewModelProvider(this, factory).get(FavoriteViewModel::class.java)
     }
 
     private fun showCustomDialog(){
