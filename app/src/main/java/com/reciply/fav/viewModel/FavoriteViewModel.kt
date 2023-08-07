@@ -12,7 +12,7 @@ class FavoriteViewModel(var repo: FavRepo): ViewModel() {
 
     // for getMealById(id: String)
     private val _meal= MutableLiveData<Meal>()
-    val mealList: LiveData<Meal> =_meal
+    val meal: LiveData<Meal> =_meal
 
     // for getUserFavList(userID: Int)
     private val _mealsFavList= MutableLiveData<List<String>>()

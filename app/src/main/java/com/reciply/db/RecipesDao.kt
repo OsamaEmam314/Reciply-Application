@@ -15,4 +15,8 @@ interface RecipesDao {
 
     @Query("DELETE FROM UserFavList WHERE idUser = :userID AND idMeal = :mealID")
     suspend fun deleteFromFavRecipe(userID: Int, mealID: String)
+
+//    @Query("SELECT EXISTS(SELECT * FROM UserFavList WHERE idUser = :userID AND idMeal = :mealID) ")
+//    suspend fun checkFavRecipe(userID: Int, mealID: String): Boolean
+
 }

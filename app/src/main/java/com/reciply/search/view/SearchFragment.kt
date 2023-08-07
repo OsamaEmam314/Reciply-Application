@@ -40,12 +40,20 @@ class SearchFragment : Fragment() {
     lateinit var adapterSearch: SearchRecyclerAdapter
     var listOfMeals: List<Meal> = listOf()
 
+    private lateinit var sharedPreferences: SharedPreferences
+    var searchKey : String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
+        sharedPreferences = requireActivity().getSharedPreferences("search_results", Context.MODE_PRIVATE)
+        searchKey = sharedPreferences.getString("key_search", "")
+        Log.d(TAG, "onCreateView: $searchKey")
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,12 +69,25 @@ class SearchFragment : Fragment() {
 
         getSearchViewModelReady()
 
+        sharedPreferences = requireActivity().getSharedPreferences("search_results", Context.MODE_PRIVATE)
+
         // set adapter and recycler view
         recyclerSearch.adapter = adapterSearch
         recyclerSearch.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         etSearch.setOnClickListener {
             tvNoResults.visibility = View.GONE
+        }
+
+        if(!searchKey.isNullOrEmpty()){
+            // retrieve the last search results
+            searchForRecipe(searchKey!!)
+            // make shared pref empty
+            with(sharedPreferences.edit()) {
+                putString("key_search", "")
+                    commit()
+            }
+
         }
 
         etSearch.editText?.addTextChangedListener(object : TextWatcher {
@@ -95,7 +116,7 @@ class SearchFragment : Fragment() {
     fun searchForRecipe(seq: String){
         // hit api and return results
         searchViewModel.getMealByName(seq)
-        searchViewModel.mealList.observe(this){
+        searchViewModel.mealList.observe(viewLifecycleOwner){
             if (it != null){
                 tvNoResults.visibility = View.GONE
 //                listOfMeals = it
@@ -116,4 +137,34 @@ class SearchFragment : Fragment() {
         )  // send instance of Imp for repo
         searchViewModel = ViewModelProvider(this, mealsFactory).get(SearchViewModel::class.java)
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("key_search", etSearch.editText?.text.toString())
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        with(sharedPreferences.edit()) {
+            if (!etSearch.editText?.text.isNullOrEmpty()){
+                putString("key_search", etSearch.editText?.text.toString())
+                    commit()
+            }else{
+                Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+    fun isFavRecipe(mealId: String): Boolean{
+        var listOfFav = listOf<String>()  // need to call a function that get all the fav list from db
+         // check if this meal is found in fav meals list from db
+        for (i in 0 until listOfFav.size){
+            if(mealId == listOfFav[i]){
+                return true
+            }
+        }
+        return false
+    }
+
 }

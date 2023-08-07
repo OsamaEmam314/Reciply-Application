@@ -58,6 +58,11 @@ class FavRecyclerAdapter(var context: Context,
         }
     }
 
+    fun setData(listOfMeals: List<Meal>){
+        favRecipes = listOfMeals
+        notifyDataSetChanged()
+    }
+
     private fun showCustomDialog(position: Int){
         val dialog = Dialog(context)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

@@ -11,5 +11,6 @@ interface LocalDatabase {
     suspend fun getUserFavList(userID: Int) : List<String>
     suspend fun insertIntoFavRecipe(userID: Int, mealID: String)
     suspend fun deleteFromFavRecipe(userID: Int, mealID: String)
+//    suspend fun checkFavRecipe(userID: Int, mealID: String): Boolean
 
 }
