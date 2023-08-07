@@ -2,6 +2,8 @@ package com.reciply
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -55,7 +57,15 @@ class SplashFragment : Fragment() {
         animatorSet.playTogether(reciplyAnimation, sloganAnimation)
         animatorSet.start()
         rootView.postDelayed({
-            navigateToNextFragment()
+            val isUserLoggedIn = IsUserLoggedInSharedPreferences()
+            if(isUserLoggedIn)
+            {
+                val intent = Intent(requireContext(), RecipeActivity::class.java)
+                startActivity(intent)
+            }
+            else {
+                navigateToNextFragment()
+            }
 
         }, SPLASH_DURATION)
     }
@@ -64,6 +74,9 @@ class SplashFragment : Fragment() {
         val action=SplashFragmentDirections.actionSplashFragment2ToLoginFragment2()
         findNavController().navigate(action)
     }
-
+    private fun IsUserLoggedInSharedPreferences(): Boolean {
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("isUserLoggedin",false)
+    }
 
 }

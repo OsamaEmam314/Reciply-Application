@@ -37,41 +37,51 @@ class RegisterFragment : Fragment() {
         val userNameTextInput = rootView.findViewById<EditText>(R.id.txtInput_userName_register)
         val userNameTextLayout = rootView.findViewById<TextInputLayout>(R.id.txtlayout_userName_register)
 
-        // Initialize RegisterViewModel using the RegisterViewModelFactory
-        val localDatabase = LocalDatabaseImpl(requireContext()) // Initialize your LocalDatabaseImpl with the appropriate context
+        val localDatabase = LocalDatabaseImpl(requireContext())
         val registerRepo = RegisterRepoImpl(localDatabase)
         val registerViewModelFactory = RegisterViewModelFactory(registerRepo)
         registerViewModel = ViewModelProvider(this, registerViewModelFactory).get(RegisterViewModel::class.java)
 
         submitButton.setOnClickListener {
-            // Getting the values
             val emailValue = emailTextInput.text.toString().trim()
             val passwordValue = passwordTextInput.text.toString()
             val userNameValue = userNameTextInput.text.toString().trim()
 
-            // Validate email, password, and username
-            val isEmailValid = isValidEmail(emailValue)
-            val isPasswordValid = isValidPassword(passwordValue)
-            val isUserNameValid = isValidUserName(userNameValue)
+            if (emailValue.isEmpty()) {
+                emailTextLayout.error = "Email cannot be empty"
+            } else {
+                emailTextLayout.error = if (!isValidEmail(emailValue)) "Wrong Email Format" else null
+            }
 
-            // Update error messages if necessary
-            emailTextLayout.error = if (!isEmailValid) "Wrong Email Format" else null
-            passwordTextLayout.error = if (!isPasswordValid) "Password must have at least 5 characters, one capital letter, one special character, and one number." else null
-            userNameTextLayout.error = if (!isUserNameValid) "Username must be at least 5 characters long, start with a letter, and contain no special characters." else null
+            if (passwordValue.isEmpty()) {
+                passwordTextLayout.error = "Password cannot be empty"
+            } else {
+                passwordTextLayout.error =
+                    if (!isValidPassword(passwordValue)) "Password must have at least 5 characters, one capital letter, one special character, and one number." else null
+            }
 
-            // If all fields are valid, register the new user
+            if (userNameValue.isEmpty()) {
+                userNameTextLayout.error = "Username cannot be empty"
+            } else {
+                userNameTextLayout.error =
+                    if (!isValidUserName(userNameValue)) "Username must be at least 5 characters long, start with a letter, and contain no special characters." else null
+            }
+
+            // Check if all fields are valid before proceeding with registration
+            val isEmailValid = emailTextLayout.error == null
+            val isPasswordValid = passwordTextLayout.error == null
+            val isUserNameValid = userNameTextLayout.error == null
+
             if (isEmailValid && isPasswordValid && isUserNameValid) {
-                // Use lifecycleScope to launch a coroutine inside the fragment
-                // We can call suspend function registerNewUser from a coroutine.
                 lifecycleScope.launch {
-                    val isUserRegistered = registerViewModel.registerNewUser(emailValue, passwordValue, userNameValue)
+                    val isUserRegistered =
+                        registerViewModel.registerNewUser(emailValue, passwordValue, userNameValue)
 
                     if (isUserRegistered) {
-                        // User registered successfully, you can display a success message or navigate to another fragment
-                        val action = RegisterFragmentDirections.actionRegisterFragment2ToLoginFragment2()
+                        val action =
+                            RegisterFragmentDirections.actionRegisterFragment2ToLoginFragment2()
                         findNavController().navigate(action)
                     } else {
-
                         emailTextLayout.error = "User with the same email already exists."
                     }
                 }
