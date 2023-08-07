@@ -36,7 +36,9 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
             .into(holder.imgMeal)
 
         // need to check whether the recipe is fav or not
+        // cheak if the current postion if from fav or not to change the fav icon
 //        Glide.with(context).load(R.drawable.baseline_favorite_border_24).into(holder.imgFavIcon)
+
         holder.tvMealName.text = recipesResults[position].strMeal
 
         holder.favIcon.setOnClickListener {
@@ -44,11 +46,10 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
         }
 
         holder.itemView.setOnClickListener {
-            // navigate to the details fragment and send the id for this recipe
-          /*  val action =
-                SearchFragmentDirections.actionSearchFragmentToRecipeDetailFragment(recipesResults[position].idMeal)
-            navController.navigate(action)*/
-            navController.navigate(R.id.recipeDetailFragment)
+           val action =
+                SearchFragmentDirections.actionSearchFragmentToRecipeDetailFragment(recipesResults[position])
+            navController.navigate(action)
+//            navController.navigate(R.id.recipeDetailFragment)
         }
     }
 

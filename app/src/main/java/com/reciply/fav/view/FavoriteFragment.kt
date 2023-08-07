@@ -1,9 +1,12 @@
 package com.reciply.fav.view
 
 import android.app.Dialog
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +32,9 @@ import com.reciply.search.repo.SearchRepoImpl
 import com.reciply.search.view.SearchRecyclerAdapter
 import com.reciply.search.viewModel.SearchVMFactory
 import com.reciply.search.viewModel.SearchViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FavoriteFragment : Fragment() {
 
@@ -43,6 +49,11 @@ class FavoriteFragment : Fragment() {
 
     lateinit var tvNoFavRecipes: TextView
     var currentUserId: Int = 1 // need to take it from the session
+
+    private lateinit var sharedPreferences: SharedPreferences
+//    lateinit var editor: SharedPreferences.Editor
+
+    var listOfFavMeals: List<Meal> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,12 +71,16 @@ class FavoriteFragment : Fragment() {
 
         nav_controller = findNavController()
 
+        sharedPreferences = requireActivity().getSharedPreferences("current_user", Context.MODE_PRIVATE)
+        currentUserId = sharedPreferences.getInt("currentUser", 1)
+
         getFavoriteViewModelReady()
 
         adapterFav = FavRecyclerAdapter(requireContext(), nav_controller, favoriteViewModel, currentUserId)
         recyclerFav.adapter = adapterFav
         recyclerFav.layoutManager = GridLayoutManager(requireContext(), 2)
 
+        getAllFavList()
 
     }
 
@@ -94,6 +109,33 @@ class FavoriteFragment : Fragment() {
             dialog.dismiss()
         }
         dialog.show()
+    }
+
+    fun getAllFavList(){
+        var tempList = mutableListOf<Meal>()
+        CoroutineScope(Dispatchers.IO).launch {
+            favoriteViewModel.getUserFavList(currentUserId)
+        }
+        favoriteViewModel.mealsFavList.observe(viewLifecycleOwner){
+            // loop on teh list and hit api to get the meal by id
+            if (it.size != 0) {
+                Log.d(TAG, "getAllFavList: the meals recived from db")
+                for (i in 0 until it.size){
+                    favoriteViewModel.getMealById(it[i])
+                    favoriteViewModel.meal.observe(viewLifecycleOwner){
+                        tempList.add(it)
+                    }
+                }
+
+                listOfFavMeals = tempList
+                adapterFav.setData(listOfFavMeals)
+
+            }else{
+                Log.d(TAG, "getAllFavList: no meals recived from db")
+            }
+
+        }
+
     }
 
 }

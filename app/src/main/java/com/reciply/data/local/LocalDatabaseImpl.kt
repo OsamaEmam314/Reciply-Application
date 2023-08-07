@@ -31,12 +31,8 @@ class LocalDatabaseImpl(context: Context): LocalDatabase {
         daoRecipe.deleteFromFavRecipe(userID, mealID)
     }
 
-//    override suspend fun insertUser(user: User) {
-//        dao.insertUser(user)
-//    }
-//
-//    override suspend fun deleteUser(user: User) {
-//        dao.deleteUser(user)
+//    override suspend fun checkFavRecipe(userID: Int, mealID: String): Boolean {
+//        return daoRecipe.checkFavRecipe(userID, mealID)
 //    }
 
 }
