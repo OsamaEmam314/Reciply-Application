@@ -2,11 +2,14 @@ package com.reciply.data.data.local
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import com.reciply.data.models.User
 
 import com.reciply.db.UsersDatabase
 
 import com.reciply.db.RecipesDao
 import com.reciply.db.UsersDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 
 class LocalDatabaseImpl(context: Context): LocalDatabase {
@@ -31,8 +34,17 @@ class LocalDatabaseImpl(context: Context): LocalDatabase {
         daoRecipe.deleteFromFavRecipe(userID, mealID)
     }
 
-//    override suspend fun checkFavRecipe(userID: Int, mealID: String): Boolean {
-//        return daoRecipe.checkFavRecipe(userID, mealID)
-//    }
+    override suspend fun insertUser(user: User) {
+        daoUser.insertUser(user)
+    }
 
+    override suspend fun deleteUser(user: User) {
+        daoUser.deleteUser(user)
+    }
+
+    override suspend fun getUserByEmail(userEmail: String): User? {
+        return withContext(Dispatchers.IO) {
+            daoUser.getUserByEmail(userEmail)
+        }
+    }
 }
