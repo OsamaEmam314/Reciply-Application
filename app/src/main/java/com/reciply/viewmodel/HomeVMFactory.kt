@@ -1,14 +1,14 @@
 package com.reciply.viewmodel
 
-import MealViewModel
+import HomeViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.reciply.repo.MealsRepository
 
-class MealVMFactory(val mealsRepository: MealsRepository):ViewModelProvider.Factory {
+class HomeVMFactory(val mealsRepository: MealsRepository):ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return if(modelClass.isAssignableFrom(MealViewModel::class.java)){
-            MealViewModel(mealsRepository) as T
+        return if(modelClass.isAssignableFrom(HomeViewModel::class.java)){
+            HomeViewModel(mealsRepository) as T
 
         }
 

@@ -5,11 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reciply.data.models.Meal
+import com.reciply.data.models.MealResponse
 import com.reciply.data.network.ApiClient
 import com.reciply.repo.MealsRepository
 import kotlinx.coroutines.launch
 
-class MealViewModel(val mealsRepository: MealsRepository):ViewModel() {
+class HomeViewModel(val mealsRepository: MealsRepository):ViewModel() {
     private val _MealListBYName = MutableLiveData<List<Meal>>()
     val MealListBYNmae: LiveData<List<Meal>> = _MealListBYName
 
@@ -19,14 +20,14 @@ class MealViewModel(val mealsRepository: MealsRepository):ViewModel() {
     private val _listOfMealsByLetter = MutableLiveData<List<Meal>>()
     val listOfMealsByLetter: LiveData<List<Meal>> = _listOfMealsByLetter
 
-    fun getMealByName(Name: String) {
+   /* fun getMealByName(Name: String) {
         viewModelScope.launch {
             val response = ApiClient.getMealByName(Name)
             Log.d("asd->", "listofMeals:$response ")
             _MealListBYName.value = response.meals
 
         }
-    }
+    }*/
 
 
     fun getRandomMeal() {
@@ -40,7 +41,10 @@ class MealViewModel(val mealsRepository: MealsRepository):ViewModel() {
     fun listMealsByLetter() {
         viewModelScope.launch {
             val randLetter = ('A'..'Z').random().toString()
-            val response = mealsRepository.getRemoteMealsList(randLetter)
+            var response:MealResponse
+            do {
+                response = mealsRepository.getRemoteMealsList(randLetter)
+            }while(response==null)
             _listOfMealsByLetter.value = response.meals
         }
     }

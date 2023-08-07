@@ -1,6 +1,6 @@
 package com.reciply
 
-import MealViewModel
+import HomeViewModel
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,7 +18,7 @@ import com.example.reciply.R
 import com.reciply.data.models.Meal
 import com.reciply.network.ApiClient
 import com.reciply.repo.MealsRepositoryImpl
-import com.reciply.viewmodel.MealVMFactory
+import com.reciply.viewmodel.HomeVMFactory
 
 
 class HomeFragment : Fragment() {
@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
     )
 
     private lateinit var rv: RecyclerView
-    private lateinit var viewModel: MealViewModel
+    private lateinit var viewModel: HomeViewModel
     private lateinit var mealAdapter: RecipeItemAdapter
     lateinit var txtRecipeTitle:TextView
     lateinit var txtViewCategory:TextView
@@ -80,8 +80,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun getViewModelReady() {
-        val mealsFactory=MealVMFactory(MealsRepositoryImpl(ApiClient))
-        viewModel= ViewModelProvider(this,mealsFactory)[MealViewModel::class.java]
+        val mealsFactory=HomeVMFactory(MealsRepositoryImpl(ApiClient))
+        viewModel= ViewModelProvider(this,mealsFactory)[HomeViewModel::class.java]
     }
 
 }
