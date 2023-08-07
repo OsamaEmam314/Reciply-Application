@@ -3,7 +3,7 @@ package com.reciply.data.models
 import java.io.Serializable
 
 data class Meal(
-    val dateModified: Any,
+    val dateModified: Any?,
     val idMeal: String,
     val strArea: String,
     val strCategory: String,
@@ -54,6 +54,6 @@ data class Meal(
     val strMeasure8: String?,
     val strMeasure9: String?,
     val strSource: String?,
-    val strTags: String,
+    val strTags: String?,
     val strYoutube: String
 ):Serializable

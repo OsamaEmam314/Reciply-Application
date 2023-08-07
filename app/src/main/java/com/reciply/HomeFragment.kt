@@ -65,16 +65,15 @@ class HomeFragment : Fragment() {
 
         viewModel.listMealsByLetter()
 
-        viewModel.listOfMealsByLetter.observe(viewLifecycleOwner){
+        viewModel.listOfMealsByLetter.observe(viewLifecycleOwner){ it ->
             /*while(it==null){
                 viewModel.listMealsByLetter()
             }*/
             mealAdapter= RecipeItemAdapter(it)
             rv.adapter=mealAdapter
             mealAdapter.onItemClick={
-                /*val action =
-                    HomeFragmentDirections.actionHomeFragmentToImagesFragment3(it.images.toTypedArray())
-                view.findNavController().navigate(action)*/
+                val action =HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(it)
+                view.findNavController().navigate(action)
             }
         }
         rv.layoutManager = LinearLayoutManager(activity?.applicationContext, RecyclerView.HORIZONTAL, false)

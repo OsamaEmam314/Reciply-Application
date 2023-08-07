@@ -1,6 +1,7 @@
 package com.reciply
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +35,6 @@ class RecipeItemAdapter(val data:List<Meal>) : RecyclerView.Adapter<RecipeItemAd
                 .error(R.drawable.baseline_broken_image_24))
             .into(holder.imgView)
         holder.itemView.setOnClickListener {
-
             onItemClick?.invoke(data[position])
         }
 
