@@ -24,10 +24,10 @@
         android:name="com.reciply.RecipeDetailFragment"
         android:label="fragment_recipe_detail"
         tools:layout="@layout/fragment_recipe_detail" >
-        <argument
-            android:name="recipe_id"
-            app:argType="string" />
 
+
+        <argument android:name="Meal"
+            app:argType="com.reciply.data.models.Meal"/>
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
