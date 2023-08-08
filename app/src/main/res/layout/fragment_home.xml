@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:id="@+id/img_meal"
+                    android:id="@+id/img_meal_main"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop" />
@@ -121,8 +121,33 @@
             android:text="All Recipes"
             android:textColor="@color/black"
             android:textSize="20sp" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            shimmer:duration="800">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
 
+                <include layout="@layout/shimmer_recipe_item"></include>
+
+                <include layout="@layout/shimmer_recipe_item"></include>
+
+                <include layout="@layout/shimmer_recipe_item"></include>
+
+                <include layout="@layout/shimmer_recipe_item"></include>
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_home"
             android:layout_width="match_parent"
@@ -131,6 +156,7 @@
             android:orientation="horizontal"
             tools:itemCount="1"
             tools:listitem="@layout/home_recipe_item3" />
+</RelativeLayout>
 
 
     </LinearLayout>

@@ -33,7 +33,9 @@ class HomeFragment : Fragment() {
     lateinit var txtRecipeTitle:TextView
     lateinit var txtViewCategory:TextView
     lateinit var imgView:ImageView
-    lateinit var shimmerViewContainer: ShimmerFrameLayout
+    lateinit var shimmerViewContainerMain: ShimmerFrameLayout
+    lateinit var shimmerViewContainerRV: ShimmerFrameLayout
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,8 +52,10 @@ class HomeFragment : Fragment() {
         rv = view.findViewById(R.id.rv_home)
         txtRecipeTitle=view.findViewById<TextView>(R.id.txt_meal_name)
         txtViewCategory=view.findViewById<TextView>(R.id.txt_meal_category)
-        imgView=view.findViewById<ImageView>(R.id.img_meal)
-        shimmerViewContainer = view.findViewById(R.id.shimmer_view_container);
+        imgView=view.findViewById<ImageView>(R.id.img_meal_main)
+        shimmerViewContainerMain = view.findViewById(R.id.shimmer_view_container);
+        shimmerViewContainerRV = view.findViewById(R.id.shimmer_view_container2);
+        shimmerViewContainerMain.bringToFront()
 
         getViewModelReady()
         viewModel.getRandomMeal()
@@ -65,6 +69,8 @@ class HomeFragment : Fragment() {
                         .placeholder(R.drawable.baseline_image_24)
                         .error(R.drawable.baseline_broken_image_24))
                 .into(imgView)
+            shimmerViewContainerMain.stopShimmerAnimation();
+            shimmerViewContainerMain.visibility = View.GONE
         }
 
         viewModel.listMealsByLetter()
@@ -79,8 +85,8 @@ class HomeFragment : Fragment() {
                 val action =HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(it)
                 view.findNavController().navigate(action)
             }
-            shimmerViewContainer.stopShimmerAnimation();
-            shimmerViewContainer.visibility = View.GONE
+            shimmerViewContainerRV.stopShimmerAnimation();
+            shimmerViewContainerRV.visibility = View.GONE
         }
         rv.layoutManager = LinearLayoutManager(activity?.applicationContext, RecyclerView.HORIZONTAL, false)
 
@@ -93,12 +99,14 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        shimmerViewContainer.startShimmerAnimation()
+        shimmerViewContainerMain.startShimmerAnimation()
+        shimmerViewContainerRV.startShimmerAnimation()
     }
 
    override fun onPause() {
-        shimmerViewContainer.stopShimmerAnimation()
         super.onPause()
+       shimmerViewContainerMain.stopShimmerAnimation()
+       shimmerViewContainerRV.stopShimmerAnimation()
     }
 
 }
