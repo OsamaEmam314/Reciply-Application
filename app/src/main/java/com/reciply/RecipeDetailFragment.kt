@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
@@ -29,6 +30,7 @@ class RecipeDetailFragment : Fragment() {
     lateinit var video: YouTubePlayerView
     lateinit var image_detail: ImageView
     lateinit var recipy_name: TextView
+    lateinit var fav_btn:AppCompatButton
     private val args: RecipeDetailFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,13 +58,16 @@ class RecipeDetailFragment : Fragment() {
         Ares = view.findViewById(R.id.tv_area)
         recipy_name = view.findViewById(R.id.tv_recipy_name)
         instruction = view.findViewById(R.id.tv_instruction)
+        fav_btn = view.findViewById(R.id.favbtn)
         video = view.findViewById(R.id.youtube_player_view)
         category.text = recipy.strCategory
         Ares.text = recipy.strArea
         recipy_name.text = recipy.strMeal
         instruction.text = recipy.strInstructions
         val video_id = getVideoId(recipy.strYoutube)
-
+       fav_btn.setOnClickListener{
+           it.setBackgroundResource(R.drawable.baseline_favorite_24)
+       }
         video.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
 
             override fun onReady(youTubePlayer: YouTubePlayer) {

@@ -28,7 +28,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="248dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/red_favorite_24"
+        android:background="@drawable/baseline_favorite_border_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/tv_recipy_name"
