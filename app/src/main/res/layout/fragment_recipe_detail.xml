@@ -43,6 +43,7 @@
         android:textColor="#FBFBFB"
         android:textSize="@dimen/headline1"
         android:textStyle="bold"
+        android:fontFamily="@font/quicksand_bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +60,7 @@
         android:text="Nodels"
         android:textColor="@color/Gray_400"
         android:textSize="14sp"
+        android:fontFamily="@font/quicksand_semibold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageDetails" />
 
@@ -73,7 +75,7 @@
         android:text="Cairo"
         android:textColor="@color/Gray_400"
         android:textSize="14sp"
-
+android:fontFamily="@font/quicksand_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/tv_category"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageDetails"
@@ -101,6 +103,7 @@
                 android:text="Instruction:"
                 android:textSize="@dimen/headline1"
                 android:textStyle="bold"
+                android:fontFamily="@font/quicksand_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.003"
                 app:layout_constraintStart_toStartOf="parent"
@@ -116,7 +119,8 @@
 
                 android:text="Bring a large pot of water to a boil. Add kosher salt to the boiling water, then add the pasta. Cook according to the package instructions, about 9 minutes.\r\nIn a large skillet over medium-high heat, add the olive oil and heat until the oil starts to shimmer. Add the garlic and cook, stirring, until fragrant, 1 to 2 minutes. Add the chopped tomatoes, red chile flakes, Italian seasoning and salt and pepper to taste. Bring to a boil and cook for 5 minutes. Remove from the heat and add the chopped basil.\r\nDrain the pasta and add it to the sauce. Garnish with Parmigiano-Reggiano flakes and more basil and serve warm."
                 android:textAlignment="inherit"
-                android:textSize="12sp"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textSize="14sp"
                 app:colorClickableText="#039BE5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
