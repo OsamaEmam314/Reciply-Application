@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.reciply.R
 import com.google.android.material.textfield.TextInputLayout
 import com.reciply.data.data.local.LocalDatabaseImpl
@@ -65,6 +66,8 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        activity?.findViewById<MeowBottomNavigation>(R.id.bottomNavigation)?.show(1,true)
 
         recyclerFav = view.findViewById(R.id.recycler_fav_frg)
         tvNoFavRecipes = view.findViewById(R.id.tv_no_fav_meals_fav_frg)

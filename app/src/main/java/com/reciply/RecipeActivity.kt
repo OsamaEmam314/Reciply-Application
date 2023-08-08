@@ -2,11 +2,15 @@ package com.reciply
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.setViewTreeOnBackPressedDispatcherOwner
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.reciply.R
+import com.reciply.fav.view.FavoriteFragment
 
 class RecipeActivity : AppCompatActivity() {
     lateinit var bottomNavigation:MeowBottomNavigation
@@ -16,17 +20,16 @@ class RecipeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.recipeNavHost) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.recipeNavHost) as NavHostFragment
         navController = navHostFragment.navController
 
-
-        bottomNavigation=findViewById(R.id.bottomNavigation)
-        bottomNavigation.show(2,true)
-        bottomNavigation.add(MeowBottomNavigation.Model(1,R.drawable.baseline_favorite_24))
-        bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.baseline_home_24))
-        bottomNavigation.add(MeowBottomNavigation.Model(3,R.drawable.baseline_search_24))
+        bottomNavigation = findViewById(R.id.bottomNavigation)
+        bottomNavigation.show(2, true)
+        bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.baseline_favorite_24))
+        bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.baseline_home_24))
+        bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.baseline_search_24))
         setupBottomNavigation()
-
     }
 
     private fun setupBottomNavigation(){
@@ -37,8 +40,7 @@ class RecipeActivity : AppCompatActivity() {
                     3->navController.navigate(R.id.searchFragment)
                 }
 
-
-
         }
+
     }
 }

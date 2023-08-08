@@ -40,11 +40,12 @@ class HomeViewModel(val mealsRepository: MealsRepository):ViewModel() {
 
     fun listMealsByLetter() {
         viewModelScope.launch {
-            val randLetter = ('A'..'Z').random().toString()
+            var randLetter:String
             var response:MealResponse
             do {
+                randLetter = ('A'..'Z').random().toString()
                 response = mealsRepository.getRemoteMealsList(randLetter)
-            }while(response==null)
+            }while(response.meals==null)
             _listOfMealsByLetter.value = response.meals
         }
     }
