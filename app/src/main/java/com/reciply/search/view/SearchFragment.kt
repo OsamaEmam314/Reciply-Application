@@ -18,6 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.reciply.R
 import com.google.android.material.textfield.TextInputLayout
 import com.reciply.data.data.local.LocalDatabaseImpl
@@ -58,6 +59,8 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        activity?.findViewById<MeowBottomNavigation>(R.id.bottomNavigation)?.show(3,true)
 
         etSearch = view.findViewById(R.id.et_search_src_frg)
         recyclerSearch = view.findViewById(R.id.recycler_search_frg)

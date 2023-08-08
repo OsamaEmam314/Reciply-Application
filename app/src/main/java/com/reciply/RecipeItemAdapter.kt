@@ -19,7 +19,7 @@ class RecipeItemAdapter(val data:List<Meal>) : RecyclerView.Adapter<RecipeItemAd
     var onItemClick: ((Meal)->Unit)?=null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val row= LayoutInflater.from(parent.context).inflate(R.layout.home_recipe_item2,parent,false)
+        val row= LayoutInflater.from(parent.context).inflate(R.layout.home_recipe_item3,parent,false)
         return MyViewHolder(row)
     }
 
