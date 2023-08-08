@@ -86,7 +86,10 @@ class RecipeDetailFragment : Fragment() {
         return view
     }
 
-
+    override fun onPause() {
+        super.onPause()
+        activity?.findViewById<MeowBottomNavigation>(R.id.bottomNavigation)!!.visibility=View.VISIBLE
+    }
 }
 
 fun getVideoIdFromUrl(url: String): String? {
