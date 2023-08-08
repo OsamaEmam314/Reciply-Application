@@ -2,11 +2,13 @@ package com.reciply
 
 import HomeViewModel
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -35,6 +37,7 @@ class HomeFragment : Fragment() {
     lateinit var imgView:ImageView
     lateinit var shimmerViewContainerMain: ShimmerFrameLayout
     lateinit var shimmerViewContainerRV: ShimmerFrameLayout
+    lateinit var cardMainMeal:CardView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,14 +59,13 @@ class HomeFragment : Fragment() {
         shimmerViewContainerMain = view.findViewById(R.id.shimmer_view_container);
         shimmerViewContainerRV = view.findViewById(R.id.shimmer_view_container2);
         shimmerViewContainerMain.bringToFront()
-
         getViewModelReady()
         viewModel.getRandomMeal()
-        viewModel.randomMeal.observe(viewLifecycleOwner){
-            txtRecipeTitle.text=it.strMeal
-            txtViewCategory.text=it.strCategory
+        viewModel.randomMeal.observe(viewLifecycleOwner){randMeal->
+            txtRecipeTitle.text=randMeal.strMeal
+            txtViewCategory.text=randMeal.strCategory
             Glide.with(view.context)
-                .load(it.strMealThumb)
+                .load(randMeal.strMealThumb)
                 .apply(
                     RequestOptions()
                         .placeholder(R.drawable.baseline_image_24)
@@ -71,6 +73,10 @@ class HomeFragment : Fragment() {
                 .into(imgView)
             shimmerViewContainerMain.stopShimmerAnimation();
             shimmerViewContainerMain.visibility = View.GONE
+            imgView.setOnClickListener {
+                val action =HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(randMeal)
+                view.findNavController().navigate(action)
+            }
         }
 
         viewModel.listMealsByLetter()
