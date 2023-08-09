@@ -3,6 +3,7 @@ package com.reciply.authentication.login.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -86,11 +87,25 @@ class LoginFragment : Fragment() {
         return rootView
     }
 
-    private fun saveUserIdToSharedPreferences(userId: Int?) {
+  /*  private fun saveUserIdToSharedPreferences(userId: Int?) {
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putInt("userId", userId ?: -1)
         editor.putBoolean("isUserLoggedin",true)
         editor.apply()
-    }
+    }*/
+  private fun saveUserIdToSharedPreferences(userId: Int?) {
+      val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+      val editor = sharedPreferences.edit()
+      editor.putInt("userId", userId ?: -1)
+      editor.putBoolean("isUserLoggedIn", true) // Fixed the typo here
+      editor.apply()
+
+      // Add a log to confirm the saved userId
+      if (userId != null) {
+          Log.d("SharedPreferences", "Saved userId: $userId")
+      }
+  }
+
+
 }

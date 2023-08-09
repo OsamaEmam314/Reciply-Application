@@ -49,9 +49,8 @@ class FavoriteFragment : Fragment() {
     lateinit var favoriteViewModel : FavoriteViewModel
 
     lateinit var tvNoFavRecipes: TextView
-    var currentUserId: Int = 1 // need to take it from the session
-
     private lateinit var sharedPreferences: SharedPreferences
+    private var currentUserId: Int = -1
 //    lateinit var editor: SharedPreferences.Editor
 
     var listOfFavMeals: List<Meal> = listOf()
@@ -62,6 +61,7 @@ class FavoriteFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_favorite, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,16 +73,14 @@ class FavoriteFragment : Fragment() {
         tvNoFavRecipes = view.findViewById(R.id.tv_no_fav_meals_fav_frg)
 
         nav_controller = findNavController()
-
-        sharedPreferences = requireActivity().getSharedPreferences("current_user", Context.MODE_PRIVATE)
-        currentUserId = sharedPreferences.getInt("currentUser", 1)
-
+        sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        currentUserId = sharedPreferences.getInt("userId", -1)
+        Log.d("SharedPreferences", "Retrieved userId: $currentUserId")
         getFavoriteViewModelReady()
 
         adapterFav = FavRecyclerAdapter(requireContext(), nav_controller, favoriteViewModel, currentUserId)
         recyclerFav.adapter = adapterFav
         recyclerFav.layoutManager = GridLayoutManager(requireContext(), 2)
-
         getAllFavList()
 
     }
