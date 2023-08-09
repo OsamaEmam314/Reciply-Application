@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.reciply.R
@@ -39,29 +40,20 @@ import kotlinx.coroutines.launch
 
 class FavoriteFragment : Fragment() {
 
-    private val TAG  = "FavoriteFragment"
+    private val TAG  = "FavoriteFragment=="
     lateinit var recyclerFav: RecyclerView
     //    var listOfFav: List<Meal> = listOf()
     lateinit var adapterFav: FavRecyclerAdapter
-
     lateinit var nav_controller: NavController
-
     lateinit var favoriteViewModel : FavoriteViewModel
-
     lateinit var tvNoFavRecipes: TextView
-    var currentUserId: Int = 1 // need to take it from the session
-
     private lateinit var sharedPreferences: SharedPreferences
-//    lateinit var editor: SharedPreferences.Editor
+    private var currentUserId: Int = -1
 
-    var listOfFavMeals: List<Meal> = listOf()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_favorite, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,18 +65,27 @@ class FavoriteFragment : Fragment() {
         tvNoFavRecipes = view.findViewById(R.id.tv_no_fav_meals_fav_frg)
 
         nav_controller = findNavController()
-
-        sharedPreferences = requireActivity().getSharedPreferences("current_user", Context.MODE_PRIVATE)
-        currentUserId = sharedPreferences.getInt("currentUser", 1)
-
+        sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        currentUserId = sharedPreferences.getInt("userId", -1)
+        Log.d("SharedPreferences", "Retrieved userId: $currentUserId")
         getFavoriteViewModelReady()
 
         adapterFav = FavRecyclerAdapter(requireContext(), nav_controller, favoriteViewModel, currentUserId)
         recyclerFav.adapter = adapterFav
         recyclerFav.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        getAllFavList()
+        recyclerFav.setHasFixedSize(true)
 
+        favoriteViewModel.getRecipesWithUser(currentUserId)
+        favoriteViewModel.mealsFavList.observe(viewLifecycleOwner){
+            if(it != null){
+                tvNoFavRecipes.visibility = View.GONE
+                adapterFav.setData(it.recipes)
+            }else{
+                tvNoFavRecipes.visibility = View.VISIBLE
+                Log.d(TAG, "onViewCreated: the list from db is null ***")
+            }
+        }
     }
 
     private fun getFavoriteViewModelReady(){
@@ -92,53 +93,6 @@ class FavoriteFragment : Fragment() {
             FavRepoImpl(ApiClient, LocalDatabaseImpl(requireContext().applicationContext))
         )  // send instance of Imp for repo
         favoriteViewModel = ViewModelProvider(this, factory).get(FavoriteViewModel::class.java)
-    }
-
-    private fun showCustomDialog(){
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setContentView(R.layout.custom_dialog)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        val btnDelete: Button = dialog.findViewById(R.id.btn_delete_dialog)
-        val btnCancel: Button = dialog.findViewById(R.id.btn_cancel_dialog)
-
-        btnDelete.setOnClickListener {
-            // delete recipe from db
-        }
-        btnCancel.setOnClickListener {
-            // hide the dialog
-            dialog.dismiss()
-        }
-        dialog.show()
-    }
-
-    fun getAllFavList(){
-        var tempList = mutableListOf<Meal>()
-        CoroutineScope(Dispatchers.IO).launch {
-            favoriteViewModel.getUserFavList(currentUserId)
-        }
-        favoriteViewModel.mealsFavList.observe(viewLifecycleOwner){
-            // loop on teh list and hit api to get the meal by id
-            if (it.size != 0) {
-                Log.d(TAG, "getAllFavList: the meals recived from db")
-                for (i in 0 until it.size){
-                    favoriteViewModel.getMealById(it[i])
-                    favoriteViewModel.meal.observe(viewLifecycleOwner){
-                        tempList.add(it)
-                    }
-                }
-
-                listOfFavMeals = tempList
-                adapterFav.setData(listOfFavMeals)
-
-            }else{
-                Log.d(TAG, "getAllFavList: no meals recived from db")
-            }
-
-        }
-
     }
 
 }

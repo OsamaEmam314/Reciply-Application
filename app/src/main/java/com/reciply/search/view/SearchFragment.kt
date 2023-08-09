@@ -43,17 +43,16 @@ class SearchFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
     var searchKey : String? = null
+    var currentUserId: Int = 0
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_search, container, false)
+
         sharedPreferences = requireActivity().getSharedPreferences("search_results", Context.MODE_PRIVATE)
         searchKey = sharedPreferences.getString("key_search", "")
-        Log.d(TAG, "onCreateView: $searchKey")
 
+        Log.d(TAG, "onCreateView: $searchKey")
         return view
     }
 
@@ -66,13 +65,12 @@ class SearchFragment : Fragment() {
         recyclerSearch = view.findViewById(R.id.recycler_search_frg)
         tvNoResults = view.findViewById(R.id.tv_no_results_src_frg)
 
+//        val editable = Editable.Factory.getInstance().newEditable("meat")
+//        etSearch.editText?.text = editable
 
         nav_controller = findNavController()
-        adapterSearch = SearchRecyclerAdapter(requireContext(), nav_controller)
-
         getSearchViewModelReady()
-
-        sharedPreferences = requireActivity().getSharedPreferences("search_results", Context.MODE_PRIVATE)
+        adapterSearch = SearchRecyclerAdapter(requireContext(), nav_controller, searchViewModel, currentUserId, viewLifecycleOwner)
 
         // set adapter and recycler view
         recyclerSearch.adapter = adapterSearch
@@ -85,6 +83,7 @@ class SearchFragment : Fragment() {
         if(!searchKey.isNullOrEmpty()){
             // retrieve the last search results
             searchForRecipe(searchKey!!)
+
             // make shared pref empty
             with(sharedPreferences.edit()) {
                 putString("key_search", "")
@@ -95,7 +94,6 @@ class SearchFragment : Fragment() {
 
         etSearch.editText?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -114,6 +112,8 @@ class SearchFragment : Fragment() {
 
             }
         })
+
+
     }
 
     fun searchForRecipe(seq: String){
@@ -122,7 +122,7 @@ class SearchFragment : Fragment() {
         searchViewModel.mealList.observe(viewLifecycleOwner){
             if (it != null){
                 tvNoResults.visibility = View.GONE
-//                listOfMeals = it
+                listOfMeals = it
 //                adapterSearch.setData(listOfMeals)
                 adapterSearch.setData(it)
             }else{
@@ -141,11 +141,6 @@ class SearchFragment : Fragment() {
         searchViewModel = ViewModelProvider(this, mealsFactory).get(SearchViewModel::class.java)
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putString("key_search", etSearch.editText?.text.toString())
-        super.onSaveInstanceState(outState)
-    }
-
     override fun onPause() {
         super.onPause()
         with(sharedPreferences.edit()) {
@@ -157,17 +152,4 @@ class SearchFragment : Fragment() {
             }
         }
     }
-
-
-    fun isFavRecipe(mealId: String): Boolean{
-        var listOfFav = listOf<String>()  // need to call a function that get all the fav list from db
-         // check if this meal is found in fav meals list from db
-        for (i in 0 until listOfFav.size){
-            if(mealId == listOfFav[i]){
-                return true
-            }
-        }
-        return false
-    }
-
 }

@@ -1,6 +1,7 @@
 package com.reciply.search.view
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,15 +9,21 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.reciply.R
 import com.reciply.data.models.Meal
+import com.reciply.data.models.Recipe
+import com.reciply.data.models.UserFavList
+import com.reciply.db.UserWithFavRecipes
+import com.reciply.search.viewModel.SearchViewModel
 
 
-class SearchRecyclerAdapter(var context: Context, var navController: NavController): RecyclerView.Adapter<SearchRecyclerAdapter.MyViewHolder>() {
+class SearchRecyclerAdapter(var context: Context, var navController: NavController, var viewModel: SearchViewModel, var userId: Int, var owner: LifecycleOwner): RecyclerView.Adapter<SearchRecyclerAdapter.MyViewHolder>() {
 
     private var recipesResults: List<Meal> = listOf()
 
@@ -32,7 +39,7 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         Glide.with(context).load(recipesResults[position].strMealThumb)
             .placeholder(R.drawable.product_placeolder)
-            .apply(RequestOptions().override(300, 300))
+//            .apply(RequestOptions().override(300, 300))
             .into(holder.imgMeal)
 
         // need to check whether the recipe is fav or not
@@ -40,9 +47,30 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
 //        Glide.with(context).load(R.drawable.baseline_favorite_border_24).into(holder.imgFavIcon)
 
         holder.tvMealName.text = recipesResults[position].strMeal
+        holder.tvCategory.text = recipesResults[position].strCategory
 
         holder.favIcon.setOnClickListener {
             // check the status (if the recipe is in fav list or not) from db
+            viewModel.checkRecipeExists(recipesResults[position].idMeal)
+            viewModel.isExists.observe(owner){
+                if (it){
+                    Log.d("SearchAdapter", "onBindViewHolder: $it recipe is already in meal table")
+                }else{
+                    Log.d("SearchAdapter", "onBindViewHolder: $it added **")
+//                    viewModel.insertRecipe(recipesResults[position])
+//                    viewModel.checkFavRecipe(userId, recipesResults[position].idMeal)
+//                    viewModel.isFav.observe(owner){
+//                        if(!it){
+//                            Log.d("SearchAdapter", "onBindViewHolder: is fav $it")
+////                            viewModel.insertIntoFavList(UserFavList(userId, recipesResults[position].idMeal))
+//                        }
+//                    }
+                }
+
+            }
+//            viewModel.insertRecipe(recipesResults[position])
+//            viewModel.insertIntoFavList(UserFavList(userId, recipesResults[position].idMeal))
+//                viewModel.deleteFromFavList(UserFavList(userId, recipesResults[position].idMeal))
         }
 
         holder.itemView.setOnClickListener {
@@ -61,6 +89,10 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
     fun clearData(){
         recipesResults = listOf()
         notifyDataSetChanged()
+}
+
+    fun isFavRecipe(position: Int){
+        viewModel.checkFavRecipe(userId, recipesResults[position].idMeal)
     }
 
     class MyViewHolder(row: View): RecyclerView.ViewHolder(row) {
@@ -68,5 +100,6 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
         var tvMealName: TextView = row.findViewById(R.id.tv_meal_name_src_frg)
 //        var imgFavIcon: ImageView = row.findViewById(R.id.img_fav_icon_src_frg)
         var favIcon : CheckBox = row.findViewById(R.id.img_fav_icon_src_frg)
+        var tvCategory: TextView = row.findViewById(R.id.tv_meal_category_src_frg)
     }
 }

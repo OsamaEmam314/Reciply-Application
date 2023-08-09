@@ -12,12 +12,16 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.reciply.R
 import com.reciply.data.models.Meal
+import com.reciply.data.models.Recipe
+import com.reciply.data.models.UserFavList
+import com.reciply.db.UserWithFavRecipes
 import com.reciply.fav.viewModel.FavoriteViewModel
 import com.reciply.search.view.SearchRecyclerAdapter
 
@@ -30,7 +34,7 @@ class FavRecyclerAdapter(var context: Context,
     private var favRecipes: List<Meal> = listOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val row = LayoutInflater.from(parent.context).inflate(R.layout.fav_recycler_item, parent, false)
-        return FavRecyclerAdapter.MyViewHolder(row)
+        return MyViewHolder(row)
     }
 
     override fun getItemCount(): Int {
@@ -43,6 +47,7 @@ class FavRecyclerAdapter(var context: Context,
             .apply(RequestOptions().override(300, 300))
             .into(holder.imgMeal)
 
+        holder.tvCategory.text = favRecipes[position].strCategory
         holder.tvMealName.text = favRecipes[position].strMeal
 
         holder.deleteIcon.setOnClickListener {
@@ -52,9 +57,9 @@ class FavRecyclerAdapter(var context: Context,
 
         holder.itemView.setOnClickListener {
             // navigate to the details fragment and send recipe
-            /*  val action =
-                  SearchFragmentDirections.actionSearchFragmentToRecipeDetailFragment(recipesResults[position].idMeal)
-              navController.navigate(action)*/
+              val action =
+                  FavoriteFragmentDirections.actionFavoriteFragmentToRecipeDetailFragment(favRecipes[position])
+              navController.navigate(action)
         }
     }
 
@@ -75,10 +80,12 @@ class FavRecyclerAdapter(var context: Context,
 
         btnDelete.setOnClickListener {
             // delete recipe from db
-            viewModel.deleteFromFavRecipe(userId, favRecipes[position].idMeal)
+            viewModel.deleteFromFavList(UserFavList(userId, favRecipes[position].idMeal))
+            Toast.makeText(context, "The recipe is deleted", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+            // how to delete it from teh current list appears in recycler view **********************************
         }
         btnCancel.setOnClickListener {
-            // hide the dialog
             dialog.dismiss()
         }
         dialog.show()
@@ -86,8 +93,9 @@ class FavRecyclerAdapter(var context: Context,
 
     class MyViewHolder(row: View): RecyclerView.ViewHolder(row) {
         var imgMeal: ImageView = row.findViewById(R.id.img_meal_fav_frg)
+        var deleteIcon : ImageView = row.findViewById(R.id.img_delete_fav_frg)
         var tvMealName: TextView = row.findViewById(R.id.tv_meal_name_fav_frg)
-        var deleteIcon : CheckBox = row.findViewById(R.id.img_delete_fav_frg)
+        var tvCategory: TextView = row.findViewById(R.id.tv_category_fav_frg)
     }
 
 }
