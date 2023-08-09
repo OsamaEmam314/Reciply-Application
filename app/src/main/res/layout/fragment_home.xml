@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+     <!--   <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -37,7 +37,7 @@
             android:text="Reciply"
             android:textAlignment="center"
             android:textColor="@color/Green_900"
-            android:textSize="20sp" />
+            android:textSize="20sp" />-->
 
 
 

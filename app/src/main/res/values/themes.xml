@@ -4,6 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/Green_700</item>
+        <item name="actionOverflowButtonStyle">@style/ThreeDotColor</item>
     </style>
 
     <style name="Theme.ReciplyApplication" parent="Base.Theme.ReciplyApplication" />
@@ -33,5 +34,8 @@
         <item name="cornerSizeBottomLeft">55dp</item>
         <item name="cornerSizeBottomRight">55dp</item>
         <item name="cornerFamily">rounded</item>
+    </style>
+    <style name="ThreeDotColor" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="tint">@color/Green_700</item>
     </style>
 </resources>
