@@ -18,7 +18,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.reciply.R
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.reciply.HomeFragmentDirections
 import com.reciply.RecipeItemAdapter
 import com.reciply.data.models.Meal
 import com.reciply.network.ApiClient
