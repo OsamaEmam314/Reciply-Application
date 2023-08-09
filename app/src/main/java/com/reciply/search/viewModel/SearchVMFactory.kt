@@ -2,7 +2,6 @@ package com.reciply.search.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.reciply.repo.MealsRepository
 import com.reciply.search.repo.SearchRepo
 
 class SearchVMFactory(val repo: SearchRepo): ViewModelProvider.Factory {

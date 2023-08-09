@@ -12,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -24,8 +23,6 @@ import com.google.android.material.textfield.TextInputLayout
 import com.reciply.data.data.local.LocalDatabaseImpl
 import com.reciply.data.models.Meal
 import com.reciply.data.network.ApiClient
-import com.reciply.repo.MealsRepositoryImpl
-import com.reciply.search.repo.SearchRepo
 import com.reciply.search.repo.SearchRepoImpl
 import com.reciply.search.viewModel.SearchVMFactory
 import com.reciply.search.viewModel.SearchViewModel

@@ -6,11 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reciply.data.models.Meal
 import com.reciply.data.models.MealResponse
-import com.reciply.data.network.ApiClient
-import com.reciply.repo.MealsRepository
+import com.home.repo.HomeMealsRepository
 import kotlinx.coroutines.launch
 
-class HomeViewModel(val mealsRepository: MealsRepository):ViewModel() {
+class HomeViewModel(val mealsRepository: HomeMealsRepository):ViewModel() {
     private val _MealListBYName = MutableLiveData<List<Meal>>()
     val MealListBYNmae: LiveData<List<Meal>> = _MealListBYName
 

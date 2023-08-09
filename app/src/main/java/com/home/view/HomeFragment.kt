@@ -1,8 +1,7 @@
-package com.reciply
+package com.home.view
 
 import HomeViewModel
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,10 +18,12 @@ import com.bumptech.glide.request.RequestOptions
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.reciply.R
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.reciply.HomeFragmentDirections
+import com.reciply.RecipeItemAdapter
 import com.reciply.data.models.Meal
 import com.reciply.network.ApiClient
-import com.reciply.repo.MealsRepositoryImpl
-import com.reciply.viewmodel.HomeVMFactory
+import com.home.repo.HomeMealsRepositoryImpl
+import com.home.viewmodel.HomeVMFactory
 
 
 class HomeFragment : Fragment() {
@@ -74,7 +75,8 @@ class HomeFragment : Fragment() {
             shimmerViewContainerMain.stopShimmerAnimation();
             shimmerViewContainerMain.visibility = View.GONE
             imgView.setOnClickListener {
-                val action =HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(randMeal)
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(randMeal)
                 view.findNavController().navigate(action)
             }
         }
@@ -88,7 +90,7 @@ class HomeFragment : Fragment() {
             mealAdapter= RecipeItemAdapter(it)
             rv.adapter=mealAdapter
             mealAdapter.onItemClick={
-                val action =HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(it)
+                val action = HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(it)
                 view.findNavController().navigate(action)
             }
             shimmerViewContainerRV.stopShimmerAnimation();
@@ -99,7 +101,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getViewModelReady() {
-        val mealsFactory=HomeVMFactory(MealsRepositoryImpl(ApiClient))
+        val mealsFactory= HomeVMFactory(HomeMealsRepositoryImpl(ApiClient))
         viewModel= ViewModelProvider(this,mealsFactory)[HomeViewModel::class.java]
     }
 

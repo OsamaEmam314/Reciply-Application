@@ -1,10 +1,9 @@
-package com.reciply.repo
+package com.home.repo
 
 import com.reciply.data.models.MealResponse
-import com.reciply.network.ApiClient
 import com.reciply.network.RemoteDataSource
 
-class MealsRepositoryImpl(var remoteDataSource: RemoteDataSource):MealsRepository {
+class HomeMealsRepositoryImpl(var remoteDataSource: RemoteDataSource): HomeMealsRepository {
     override suspend fun getRemoteMealByName(mealName: String): MealResponse {
         return remoteDataSource.getMealByName(mealName)
     }
