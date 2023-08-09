@@ -1,4 +1,4 @@
-package com.home.view
+package com.reciply.home.view
 
 import HomeViewModel
 import android.os.Bundle
@@ -22,8 +22,8 @@ import com.reciply.HomeFragmentDirections
 import com.reciply.RecipeItemAdapter
 import com.reciply.data.models.Meal
 import com.reciply.network.ApiClient
-import com.home.repo.HomeMealsRepositoryImpl
-import com.home.viewmodel.HomeVMFactory
+import com.reciply.home.repo.HomeMealsRepositoryImpl
+import com.reciply.home.viewmodel.HomeVMFactory
 
 
 class HomeFragment : Fragment() {

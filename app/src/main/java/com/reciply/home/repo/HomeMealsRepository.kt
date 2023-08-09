@@ -1,4 +1,4 @@
-package com.home.repo
+package com.reciply.home.repo
 
 import com.reciply.data.models.MealResponse
 

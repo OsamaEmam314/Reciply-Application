@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reciply.data.models.Meal
 import com.reciply.data.models.MealResponse
-import com.home.repo.HomeMealsRepository
+import com.reciply.home.repo.HomeMealsRepository
 import kotlinx.coroutines.launch
 
 class HomeViewModel(val mealsRepository: HomeMealsRepository):ViewModel() {

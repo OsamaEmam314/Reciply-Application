@@ -1,9 +1,9 @@
-package com.home.viewmodel
+package com.reciply.home.viewmodel
 
 import HomeViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.home.repo.HomeMealsRepository
+import com.reciply.home.repo.HomeMealsRepository
 
 class HomeVMFactory(val mealsRepository: HomeMealsRepository):ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
