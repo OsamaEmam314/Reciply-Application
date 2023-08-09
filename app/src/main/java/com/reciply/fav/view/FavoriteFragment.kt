@@ -80,7 +80,7 @@ class FavoriteFragment : Fragment() {
         favoriteViewModel.mealsFavList.observe(viewLifecycleOwner){
             if(it != null){
                 tvNoFavRecipes.visibility = View.GONE
-                adapterFav.setData(it.recipes)
+                adapterFav.setData(it.recipes.toMutableList())
             }else{
                 tvNoFavRecipes.visibility = View.VISIBLE
                 Log.d(TAG, "onViewCreated: the list from db is null ***")
