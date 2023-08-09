@@ -4,16 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.setViewTreeOnBackPressedDispatcherOwner
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.reciply.R
-import com.reciply.fav.view.FavoriteFragment
 
 class RecipeActivity : AppCompatActivity() {
     lateinit var bottomNavigation:MeowBottomNavigation
@@ -37,7 +32,7 @@ class RecipeActivity : AppCompatActivity() {
         setupBottomNavigation()
         toolbar=findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar?.title="Reciply"
+        supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
