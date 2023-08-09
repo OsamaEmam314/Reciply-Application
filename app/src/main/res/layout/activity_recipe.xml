@@ -20,6 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/Green_800"
+            android:theme="@style/colorofOptionMenu"
+            app:popupTheme="@style/OptionMenuText"
             android:minHeight="?attr/actionBarSize"
             app:titleTextColor="@color/white" />
 

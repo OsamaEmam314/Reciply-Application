@@ -26,4 +26,12 @@
 <style name="OptionMenuText" parent="android:TextAppearance.Widget.PopupMenu.Small">
     <item name="android:textColor">@color/Green_800</item>
 </style>
+    <style name="colorofOptionMenu" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="ImageView.Corner" parent="">
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomLeft">20dp</item>
+        <item name="cornerSizeBottomRight">20dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
 </resources>
