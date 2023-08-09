@@ -8,13 +8,13 @@
     android:background="@color/Background_color"
     tools:context="com.reciply.RecipeDetailFragment">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageDetails"
+
         android:layout_width="match_parent"
         android:layout_height="295dp"
-        android:layout_marginStart="@dimen/margin_start"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="@dimen/margin_end"
+
+app:shapeAppearanceOverlay="@style/ImageView.Corner"
         android:scaleType="centerCrop"
         android:src="@drawable/test"
         app:layout_collapseMode="parallax"
@@ -26,27 +26,32 @@
         android:id="@+id/favbtn"
         android:layout_width="48dp"
         android:layout_height="50dp"
-        android:layout_marginTop="248dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="240dp"
+
+        android:layout_marginEnd="@dimen/margin_end"
         android:background="@drawable/baseline_favorite_border_24"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/imageDetails"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/tv_recipy_name"
+        app:layout_constraintStart_toStartOf="@id/imageDetails"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_recipy_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="248dp"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:fontFamily="@font/quicksand_bold"
         android:text="Nodelis_Recipy"
         android:textColor="#FBFBFB"
+        android:layout_marginStart="@dimen/margin_start"
         android:textSize="@dimen/headline1"
         android:textStyle="bold"
-        android:fontFamily="@font/quicksand_bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/imageDetails"
+
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintStart_toStartOf="@id/imageDetails"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -142,7 +147,7 @@ android:fontFamily="@font/quicksand_semibold"
                 android:layout_marginTop="@dimen/margin_top"
                 android:layout_marginEnd="@dimen/margin_end"
                 android:layout_marginBottom="@dimen/margin_bottom"
-                app:autoPlay="false"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_instruction"

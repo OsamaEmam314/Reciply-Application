@@ -1,24 +1,22 @@
 package com.reciply
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.reciply.R
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import com.reciply.data.models.Meal
 import java.util.regex.Pattern
 
 
@@ -49,9 +47,7 @@ class RecipeDetailFragment : Fragment() {
        // bottomNavigationItemView.visibility=View.GONE
       // val view2 = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigation)
         activity?.findViewById<MeowBottomNavigation>(R.id.bottomNavigation)!!.visibility=View.GONE
-     //   val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
-     //   view2.visibility = View.GONE
-      //  fab.visibility = View.GONE
+
         val recipy = args.Meal
         image_detail = view.findViewById(R.id.imageDetails)
         category = view.findViewById(R.id.tv_category)
@@ -68,10 +64,11 @@ class RecipeDetailFragment : Fragment() {
        fav_btn.setOnClickListener{
            it.setBackgroundResource(R.drawable.baseline_favorite_24)
        }
+
         video.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
 
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.loadVideo(video_id.toString(), 0F)
+                youTubePlayer.cueVideo(video_id.toString(), 0F)
             }
 
             override fun onStateChange(
@@ -85,10 +82,19 @@ class RecipeDetailFragment : Fragment() {
         Glide.with(this).load(recipy.strMealThumb).into(image_detail)
         return view
     }
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+    }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+    }
+    override fun onDetach() {
         activity?.findViewById<MeowBottomNavigation>(R.id.bottomNavigation)!!.visibility=View.VISIBLE
+
+        super.onDetach()
     }
 }
 

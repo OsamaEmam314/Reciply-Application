@@ -8,4 +8,9 @@
     <string name="no_results">Nothing to preview</string>
 
     <string name="dialog_message">Are you sure you want to delete this recipe?</string>
+    <string name="description">Reciply presents a new experience for cooking.\n It made it easy, enjoyable and more cheap.\n
+
+Reciply has variety of food recipes that can be easily done, each recipe has all the info you will need to make it! such as ingredients, origin, cooking time and SURPRISE: a video that will be with you step by step until you get this delicious plate. 😋\n
+
+Also user can have an account to save his favorite recipes and log in is required for authentication.</string>
 </resources>
