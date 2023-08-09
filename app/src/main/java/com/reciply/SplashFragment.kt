@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,12 +17,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.reciply.R
 
 private lateinit var rootView: View
+
 class SplashFragment : Fragment() {
 
     private companion object {
         const val SPLASH_DURATION = 1500L
         const val FADE_IN_DELAY = 300L
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,25 +59,27 @@ class SplashFragment : Fragment() {
         animatorSet.start()
         rootView.postDelayed({
             val isUserLoggedIn = IsUserLoggedInSharedPreferences()
-            if(isUserLoggedIn)
-            {
-                val intent = Intent(requireContext(), RecipeActivity::class.java)
-                startActivity(intent)
+            if (isUserLoggedIn) {
+                navigateToRecipeActivity()
+            } else {
+                navigateToLoginFragment()
             }
-            else {
-                navigateToNextFragment()
-            }
-
         }, SPLASH_DURATION)
     }
 
-    private fun navigateToNextFragment() {
-        val action=SplashFragmentDirections.actionSplashFragment2ToLoginFragment2()
-        findNavController().navigate(action)
-    }
-    private fun IsUserLoggedInSharedPreferences(): Boolean {
-        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        return sharedPreferences.getBoolean("isUserLoggedin",false)
+    private fun navigateToRecipeActivity() {
+        val intent = Intent(requireContext(), RecipeActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
     }
 
+    private fun navigateToLoginFragment() {
+        val action = SplashFragmentDirections.actionSplashFragment2ToLoginFragment2()
+        findNavController().navigate(action)
+    }
+
+    private fun IsUserLoggedInSharedPreferences(): Boolean {
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("isUserLoggedIn", false)
+    }
 }
