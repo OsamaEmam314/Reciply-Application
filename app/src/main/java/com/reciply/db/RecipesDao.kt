@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.reciply.data.models.Meal
 import com.reciply.data.models.Recipe
@@ -24,9 +25,9 @@ interface RecipesDao {
     @Query("SELECT EXISTS(SELECT * FROM UserFavList WHERE idUser = :userID AND idMeal = :mealID) ")
     suspend fun checkFavRecipe(userID: Int, mealID: String): Boolean
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertIntoFavRecipe(userFavList: UserFavList)
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipe(recipe: Meal)
     @Delete
     suspend fun deleteRecipe(recipe: Meal)

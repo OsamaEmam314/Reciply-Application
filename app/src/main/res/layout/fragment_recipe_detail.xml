@@ -1,100 +1,134 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Background_color"
-    tools:context="com.reciply.RecipeDetailFragment">
+    tools:context="com.reciply.details.view.RecipeDetailFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageDetails"
-
         android:layout_width="match_parent"
         android:layout_height="295dp"
-
-app:shapeAppearanceOverlay="@style/ImageView.Corner"
         android:scaleType="centerCrop"
         android:src="@drawable/test"
         app:layout_collapseMode="parallax"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ImageView.Corner" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/favbtn"
-        android:layout_width="48dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="240dp"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/shadow2"
+        app:layout_constraintBottom_toBottomOf="@+id/imageDetails"
+        app:layout_constraintEnd_toEndOf="@+id/imageDetails"
+        app:layout_constraintStart_toStartOf="@+id/imageDetails"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ImageView.Corner" />
 
-        android:layout_marginEnd="@dimen/margin_end"
-        android:background="@drawable/baseline_favorite_border_24"
-        app:layout_constraintEnd_toEndOf="@id/imageDetails"
+    <!--    <androidx.appcompat.widget.AppCompatButton-->
+    <!--        android:id="@+id/favbtn"-->
+    <!--        android:layout_width="50dp"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:layout_marginEnd="16dp"-->
+    <!--        android:background="@drawable/baseline_favorite_border_24"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/imageDetails"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="1.0"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.0" />-->
+
+    <CheckBox
+        android:id="@+id/checkbox_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:button="@drawable/selector_fav_icon"
+        android:theme="@style/fav_checkbox"
+        app:layout_constraintBottom_toBottomOf="@+id/imageDetails"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_recipy_name"
-        app:layout_constraintStart_toStartOf="@id/imageDetails"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tv_recipy_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
-        android:layout_marginEnd="@dimen/margin_end"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="@font/quicksand_bold"
         android:text="Nodelis_Recipy"
         android:textColor="#FBFBFB"
-        android:layout_marginStart="@dimen/margin_start"
         android:textSize="@dimen/headline1"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/imageDetails"
 
+        app:layout_constraintBottom_toBottomOf="@+id/imageDetails"
+        app:layout_constraintEnd_toEndOf="@id/imageDetails"
         app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="@id/imageDetails"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_start"
-        android:layout_marginTop="@dimen/margin_top"
-        android:layout_weight="1"
-        android:drawableLeft="@drawable/baseline_category_24"
-        android:text="Nodels"
-        android:textColor="@color/Gray_400"
-        android:textSize="14sp"
-        android:fontFamily="@font/quicksand_semibold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageDetails" />
-
-    <TextView
         android:id="@+id/tv_area"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_top"
-        android:layout_marginEnd="140dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:drawableLeft="@drawable/baseline_location_on_24"
+        android:fontFamily="@font/quicksand_semibold"
         android:text="Cairo"
-        android:textColor="@color/Gray_400"
+        android:textColor="@color/Gray_500"
         android:textSize="14sp"
-android:fontFamily="@font/quicksand_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/tv_category"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_category"
         app:layout_constraintTop_toBottomOf="@+id/imageDetails"
         app:layout_constraintVertical_bias="1.0" />
 
+    <TextView
+        android:id="@+id/tv_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/baseline_category_24"
+        android:fontFamily="@font/quicksand_semibold"
+        android:text="Nodels"
+        android:textColor="@color/Gray_500"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_area"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageDetails" />
+
     <ScrollView
+        android:id="@+id/scroller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/background_radious"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_category">
+        app:layout_constraintTop_toBottomOf="@+id/tv_category"
+        app:layout_constraintVertical_bias="0.19">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -105,54 +139,50 @@ android:fontFamily="@font/quicksand_semibold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_start"
-                android:text="Instruction:"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Instruction"
                 android:textSize="@dimen/headline1"
                 android:textStyle="bold"
-                android:fontFamily="@font/quicksand_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.003"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <com.borjabravo.readmoretextview.ReadMoreTextView
                 android:id="@+id/tv_instruction"
-                android:layout_width="352dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/quicksand_semibold"
                 android:gravity="fill"
-
                 android:text="Bring a large pot of water to a boil. Add kosher salt to the boiling water, then add the pasta. Cook according to the package instructions, about 9 minutes.\r\nIn a large skillet over medium-high heat, add the olive oil and heat until the oil starts to shimmer. Add the garlic and cook, stirring, until fragrant, 1 to 2 minutes. Add the chopped tomatoes, red chile flakes, Italian seasoning and salt and pepper to taste. Bring to a boil and cook for 5 minutes. Remove from the heat and add the chopped basil.\r\nDrain the pasta and add it to the sauce. Garnish with Parmigiano-Reggiano flakes and more basil and serve warm."
                 android:textAlignment="inherit"
-                android:fontFamily="@font/quicksand_semibold"
                 android:textSize="14sp"
-                app:colorClickableText="#039BE5"
+                app:colorClickableText="@color/Green_700"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="@id/textView10"
-                app:layout_constraintTop_toBottomOf="@id/textView10"
+                app:layout_constraintStart_toStartOf="@+id/textView10"
+                app:layout_constraintTop_toBottomOf="@+id/textView10"
                 app:trimCollapsedText="@string/read_more"
                 app:trimExpandedText="@string/read_less"
-                app:trimLength="100"
+                app:trimLength="280"
                 app:trimMode="trimModeLength" />
-
 
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/youtube_player_view"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_start"
-                android:layout_marginTop="@dimen/margin_top"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/margin_end"
-                android:layout_marginBottom="@dimen/margin_bottom"
-
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_instruction"
-
-               />
+                app:layout_constraintVertical_bias="1.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

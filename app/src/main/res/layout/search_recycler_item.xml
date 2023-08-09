@@ -84,18 +84,18 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_meal_name_src_frg"
                 app:layout_constraintTop_toBottomOf="@+id/tv_meal_name_src_frg" />
 
-            <CheckBox
-                android:id="@+id/img_fav_icon_src_frg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@drawable/selector_fav_icon"
-                android:theme="@style/fav_checkbox"
-                app:layout_constraintBottom_toBottomOf="@+id/img_meal_src_frg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.957"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.19" />
+<!--            <CheckBox-->
+<!--                android:id="@+id/img_fav_icon_src_frg"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:button="@drawable/selector_fav_icon"-->
+<!--                android:theme="@style/fav_checkbox"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/img_meal_src_frg"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.957"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="0.19" />-->
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

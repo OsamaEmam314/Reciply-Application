@@ -29,7 +29,7 @@ class RecipeItemAdapter(val data:List<Meal>) : RecyclerView.Adapter<RecipeItemAd
             .load(data[position].strMealThumb)
             .apply(
                 RequestOptions()
-                .placeholder(R.drawable.baseline_image_24)
+                .placeholder(R.drawable.product_placeolder)
                 .error(R.drawable.baseline_broken_image_24))
             .into(holder.imgView)
         holder.itemView.setOnClickListener {
