@@ -31,7 +31,7 @@ class FavRecyclerAdapter(var context: Context,
                          var userId: Int)
     : RecyclerView.Adapter<FavRecyclerAdapter.MyViewHolder>()  {
 
-    private var favRecipes: List<Meal> = listOf()
+    private var favRecipes: MutableList<Meal> = mutableListOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val row = LayoutInflater.from(parent.context).inflate(R.layout.fav_recycler_item, parent, false)
         return MyViewHolder(row)
@@ -63,7 +63,7 @@ class FavRecyclerAdapter(var context: Context,
         }
     }
 
-    fun setData(listOfMeals: List<Meal>){
+    fun setData(listOfMeals: MutableList<Meal>){
         favRecipes = listOfMeals
         notifyDataSetChanged()
     }
@@ -82,6 +82,8 @@ class FavRecyclerAdapter(var context: Context,
             // delete recipe from db
             viewModel.deleteFromFavList(UserFavList(userId, favRecipes[position].idMeal))
             Toast.makeText(context, "The recipe is deleted", Toast.LENGTH_SHORT).show()
+            favRecipes.removeAt(position)
+            notifyDataSetChanged()
             dialog.dismiss()
             // how to delete it from teh current list appears in recycler view **********************************
         }
