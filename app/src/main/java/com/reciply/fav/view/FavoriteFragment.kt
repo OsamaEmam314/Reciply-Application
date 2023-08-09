@@ -78,7 +78,7 @@ class FavoriteFragment : Fragment() {
 
         favoriteViewModel.getRecipesWithUser(currentUserId)
         favoriteViewModel.mealsFavList.observe(viewLifecycleOwner){
-            if(it != null){
+            if(!it.recipes.isNullOrEmpty()){
                 tvNoFavRecipes.visibility = View.GONE
                 adapterFav.setData(it.recipes.toMutableList())
             }else{
@@ -93,6 +93,11 @@ class FavoriteFragment : Fragment() {
             FavRepoImpl(ApiClient, LocalDatabaseImpl(requireContext().applicationContext))
         )  // send instance of Imp for repo
         favoriteViewModel = ViewModelProvider(this, factory).get(FavoriteViewModel::class.java)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adapterFav.notifyDataSetChanged()
     }
 
 }

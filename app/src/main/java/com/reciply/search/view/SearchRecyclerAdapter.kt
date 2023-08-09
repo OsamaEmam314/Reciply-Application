@@ -42,42 +42,43 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
 //            .apply(RequestOptions().override(300, 300))
             .into(holder.imgMeal)
 
-        // need to check whether the recipe is fav or not
-        // cheak if the current postion if from fav or not to change the fav icon
-//        Glide.with(context).load(R.drawable.baseline_favorite_border_24).into(holder.imgFavIcon)
-
         holder.tvMealName.text = recipesResults[position].strMeal
         holder.tvCategory.text = recipesResults[position].strCategory
 
-        holder.favIcon.setOnClickListener {
-            // check the status (if the recipe is in fav list or not) from db
-            viewModel.checkRecipeExists(recipesResults[position].idMeal)
-            viewModel.isExists.observe(owner){
-                if (it){
-                    Log.d("SearchAdapter", "onBindViewHolder: $it recipe is already in meal table")
-                }else{
-                    Log.d("SearchAdapter", "onBindViewHolder: $it added **")
-//                    viewModel.insertRecipe(recipesResults[position])
-//                    viewModel.checkFavRecipe(userId, recipesResults[position].idMeal)
-//                    viewModel.isFav.observe(owner){
-//                        if(!it){
-//                            Log.d("SearchAdapter", "onBindViewHolder: is fav $it")
-////                            viewModel.insertIntoFavList(UserFavList(userId, recipesResults[position].idMeal))
-//                        }
-//                    }
-                }
-
-            }
+//        holder.favIcon.setOnClickListener {
+//            // check the status (if the recipe is in fav list or not) from db
+//
+//            //  new ************
 //            viewModel.insertRecipe(recipesResults[position])
 //            viewModel.insertIntoFavList(UserFavList(userId, recipesResults[position].idMeal))
-//                viewModel.deleteFromFavList(UserFavList(userId, recipesResults[position].idMeal))
-        }
+//
+////            viewModel.checkRecipeExists(recipesResults[position].idMeal)
+////            viewModel.isExists.observe(owner){
+////                if (it){
+////                    Log.d("SearchAdapter", "onBindViewHolder: $it recipe is already in meal table")
+////                }else{
+////                    Log.d("SearchAdapter", "onBindViewHolder: $it added **")
+////                    viewModel.insertRecipe(recipesResults[position])
+////                    viewModel.checkFavRecipe(userId, recipesResults[position].idMeal)
+////                    viewModel.isFav.observe(owner){
+////                        if(!it){
+////                            Log.d("SearchAdapter", "onBindViewHolder: is fav $it")
+//////                            viewModel.insertIntoFavList(UserFavList(userId, recipesResults[position].idMeal))
+////                        }
+////                    }
+//
+////                }
+////
+////            }
+////            viewModel.insertRecipe(recipesResults[position])
+////            viewModel.insertIntoFavList(UserFavList(userId, recipesResults[position].idMeal))
+////                viewModel.deleteFromFavList(UserFavList(userId, recipesResults[position].idMeal))
+//        }
 
         holder.itemView.setOnClickListener {
            val action =
                 SearchFragmentDirections.actionSearchFragmentToRecipeDetailFragment(recipesResults[position])
             navController.navigate(action)
-//            navController.navigate(R.id.recipeDetailFragment)
         }
     }
 
@@ -91,15 +92,10 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
         notifyDataSetChanged()
 }
 
-    fun isFavRecipe(position: Int){
-        viewModel.checkFavRecipe(userId, recipesResults[position].idMeal)
-    }
-
     class MyViewHolder(row: View): RecyclerView.ViewHolder(row) {
         var imgMeal: ImageView = row.findViewById(R.id.img_meal_src_frg)
         var tvMealName: TextView = row.findViewById(R.id.tv_meal_name_src_frg)
-//        var imgFavIcon: ImageView = row.findViewById(R.id.img_fav_icon_src_frg)
-        var favIcon : CheckBox = row.findViewById(R.id.img_fav_icon_src_frg)
+//        var favIcon : CheckBox = row.findViewById(R.id.img_fav_icon_src_frg)
         var tvCategory: TextView = row.findViewById(R.id.tv_meal_category_src_frg)
     }
 }

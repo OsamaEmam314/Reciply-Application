@@ -85,7 +85,6 @@ class FavRecyclerAdapter(var context: Context,
             favRecipes.removeAt(position)
             notifyDataSetChanged()
             dialog.dismiss()
-            // how to delete it from teh current list appears in recycler view **********************************
         }
         btnCancel.setOnClickListener {
             dialog.dismiss()

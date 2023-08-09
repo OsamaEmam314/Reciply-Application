@@ -43,13 +43,13 @@ class SearchFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
     var searchKey : String? = null
-    var currentUserId: Int = 0
+    var currentUserId: Int = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
-        sharedPreferences = requireActivity().getSharedPreferences("search_results", Context.MODE_PRIVATE)
+        sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         searchKey = sharedPreferences.getString("key_search", "")
 
         Log.d(TAG, "onCreateView: $searchKey")
