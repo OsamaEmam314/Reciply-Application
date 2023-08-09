@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.reciply.data.models.Meal
+import com.reciply.data.models.Recipe
 import com.reciply.data.models.User
 import com.reciply.data.models.UserFavList
 
-@Database(entities = [User::class, UserFavList::class], version = 1)
+@Database(entities = [User::class, UserFavList::class, Meal::class], version = 1)
 abstract class UsersDatabase: RoomDatabase() {
 
     abstract fun getDao(): UsersDao
