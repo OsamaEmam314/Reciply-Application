@@ -75,14 +75,17 @@ class FavoriteFragment : Fragment() {
         recyclerFav.layoutManager = GridLayoutManager(requireContext(), 2)
 
         recyclerFav.setHasFixedSize(true)
+        adapterFav.notifyDataSetChanged()
 
         favoriteViewModel.getRecipesWithUser(currentUserId)
         favoriteViewModel.mealsFavList.observe(viewLifecycleOwner){
             if(!it.recipes.isNullOrEmpty()){
                 tvNoFavRecipes.visibility = View.GONE
+                recyclerFav.visibility = View.VISIBLE
                 adapterFav.setData(it.recipes.toMutableList())
             }else{
                 tvNoFavRecipes.visibility = View.VISIBLE
+                recyclerFav.visibility = View.GONE
                 Log.d(TAG, "onViewCreated: the list from db is null ***")
             }
         }
@@ -93,6 +96,11 @@ class FavoriteFragment : Fragment() {
             FavRepoImpl(ApiClient, LocalDatabaseImpl(requireContext().applicationContext))
         )  // send instance of Imp for repo
         favoriteViewModel = ViewModelProvider(this, factory).get(FavoriteViewModel::class.java)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        adapterFav.notifyDataSetChanged()
     }
 
     override fun onResume() {
