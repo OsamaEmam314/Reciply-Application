@@ -1,25 +1,32 @@
 package com.reciply
 
+import android.content.Context
+import android.content.SharedPreferences
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.setViewTreeOnBackPressedDispatcherOwner
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.reciply.R
+import com.google.android.material.textfield.TextInputLayout
 import com.reciply.fav.view.FavoriteFragment
 
 class RecipeActivity : AppCompatActivity() {
     lateinit var bottomNavigation:MeowBottomNavigation
     private lateinit var navController: NavController
     lateinit var toolbar: Toolbar
-
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,10 +58,25 @@ class RecipeActivity : AppCompatActivity() {
                 homeToAbout()
             }
             R.id.action_signOut->{
-
+hometoregister()
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    private fun hometoregister() {
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("isUserLoggedin",false)
+        editor.apply()
+
+        finish()
+
+
+
+
+        navController.navigate(R.id.action_homeFragment_to_registerFragment)
     }
 
     private fun homeToAbout() {
