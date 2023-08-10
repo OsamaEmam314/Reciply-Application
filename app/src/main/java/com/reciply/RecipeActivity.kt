@@ -68,7 +68,7 @@ class RecipeActivity : AppCompatActivity() {
 
     }
     private fun homeToAbout() {
-        navController.navigate(R.id.action_homeFragment_to_aboutFragment)
+        navController.navigate(R.id.aboutFragment)
     }
 
     private fun setupBottomNavigation(){
