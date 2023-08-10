@@ -26,7 +26,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
-        android:text="Register "
+        android:text="@string/register"
         android:textColor="@color/Green_700"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -53,11 +53,14 @@
             android:id="@+id/txtInput_userName_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
+            android:hint="@string/username"
             android:isScrollContainer="false"
             android:shadowColor="@color/black"
             android:textColor="#0C0C0C"
-            android:textColorHint="@color/Green_700" />
+            android:textColorHint="@color/Green_700"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:inputType="text"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,11 +82,14 @@
             android:id="@+id/txtInput_Email_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
             android:isScrollContainer="false"
             android:shadowColor="@color/black"
             android:textColor="#0C0C0C"
-            android:textColorHint="@color/Green_700" />
+            android:textColorHint="@color/Green_700"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:inputType="textEmailAddress"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,9 +113,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
-            android:textColorHint="@color/Green_700" />
+            android:textColorHint="@color/Green_700"
+            android:imeOptions="actionDone" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -121,7 +128,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="100dp"
         android:backgroundTint="@color/Green_700"
-        android:text="Submit"
+        android:text="@string/submit"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
