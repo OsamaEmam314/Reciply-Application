@@ -151,7 +151,7 @@
             android:layout_margin="10dp"
             android:orientation="horizontal"
             tools:itemCount="1"
-            tools:listitem="@layout/home_recipe_item3" />
+            tools:listitem="@layout/home_recipe_item" />
 </RelativeLayout>
 
 
