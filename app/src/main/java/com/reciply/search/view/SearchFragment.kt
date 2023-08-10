@@ -125,7 +125,6 @@ class SearchFragment : Fragment() {
             }else{
                 tvNoResults.text = "No results found"
                 tvNoResults.visibility = View.VISIBLE
-                Toast.makeText(requireContext(), "No Results", Toast.LENGTH_SHORT).show()
                 adapterSearch.clearData()
             }
         }
@@ -144,8 +143,6 @@ class SearchFragment : Fragment() {
             if (!etSearch.editText?.text.isNullOrEmpty()){
                 putString("key_search", etSearch.editText?.text.toString())
                     commit()
-            }else{
-                Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show()
             }
         }
     }

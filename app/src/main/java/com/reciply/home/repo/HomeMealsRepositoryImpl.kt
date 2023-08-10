@@ -3,10 +3,8 @@ package com.reciply.home.repo
 import com.reciply.data.models.MealResponse
 import com.reciply.network.RemoteDataSource
 
-class HomeMealsRepositoryImpl(var remoteDataSource: RemoteDataSource): HomeMealsRepository {
-    override suspend fun getRemoteMealByName(mealName: String): MealResponse {
-        return remoteDataSource.getMealByName(mealName)
-    }
+class HomeMealsRepositoryImpl(private var remoteDataSource: RemoteDataSource): HomeMealsRepository {
+
 
     override suspend fun getRemoteRandomMeal(): MealResponse {
         return remoteDataSource.getRandomMeal()

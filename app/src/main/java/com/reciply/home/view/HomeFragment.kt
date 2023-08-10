@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -31,12 +30,11 @@ class HomeFragment : Fragment() {
     private lateinit var rv: RecyclerView
     private lateinit var viewModel: HomeViewModel
     private lateinit var mealAdapter: RecipeItemAdapter
-    lateinit var txtRecipeTitle:TextView
-    lateinit var txtViewCategory:TextView
-    lateinit var imgView:ImageView
-    lateinit var shimmerViewContainerMain: ShimmerFrameLayout
-    lateinit var shimmerViewContainerRV: ShimmerFrameLayout
-    lateinit var cardMainMeal:CardView
+    private lateinit var txtRecipeTitle:TextView
+    private lateinit var txtViewCategory:TextView
+    private lateinit var imgView:ImageView
+    private lateinit var shimmerViewContainerMain: ShimmerFrameLayout
+    private lateinit var shimmerViewContainerRV: ShimmerFrameLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,11 +50,11 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         activity?.findViewById<MeowBottomNavigation>(R.id.bottomNavigation)?.show(2,true)
         rv = view.findViewById(R.id.rv_home)
-        txtRecipeTitle=view.findViewById<TextView>(R.id.txt_meal_name)
-        txtViewCategory=view.findViewById<TextView>(R.id.txt_meal_category)
-        imgView=view.findViewById<ImageView>(R.id.img_meal_main)
-        shimmerViewContainerMain = view.findViewById(R.id.shimmer_view_container);
-        shimmerViewContainerRV = view.findViewById(R.id.shimmer_view_container2);
+        txtRecipeTitle=view.findViewById(R.id.txt_meal_name)
+        txtViewCategory=view.findViewById(R.id.txt_meal_category)
+        imgView=view.findViewById(R.id.img_meal_main)
+        shimmerViewContainerMain = view.findViewById(R.id.shimmer_view_container)
+        shimmerViewContainerRV = view.findViewById(R.id.shimmer_view_container2)
         shimmerViewContainerMain.bringToFront()
         getViewModelReady()
         viewModel.getRandomMeal()
@@ -70,7 +68,7 @@ class HomeFragment : Fragment() {
                         .placeholder(R.drawable.product_placeolder)
                         .error(R.drawable.baseline_broken_image_24))
                 .into(imgView)
-            shimmerViewContainerMain.stopShimmerAnimation();
+            shimmerViewContainerMain.stopShimmerAnimation()
             shimmerViewContainerMain.visibility = View.GONE
             imgView.setOnClickListener {
                 val action =
@@ -91,7 +89,7 @@ class HomeFragment : Fragment() {
                 val action = HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(it)
                 view.findNavController().navigate(action)
             }
-            shimmerViewContainerRV.stopShimmerAnimation();
+            shimmerViewContainerRV.stopShimmerAnimation()
             shimmerViewContainerRV.visibility = View.GONE
         }
         rv.layoutManager = LinearLayoutManager(activity?.applicationContext, RecyclerView.HORIZONTAL, false)

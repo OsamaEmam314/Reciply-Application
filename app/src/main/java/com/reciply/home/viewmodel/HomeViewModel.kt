@@ -9,24 +9,13 @@ import com.reciply.data.models.MealResponse
 import com.reciply.home.repo.HomeMealsRepository
 import kotlinx.coroutines.launch
 
-class HomeViewModel(val mealsRepository: HomeMealsRepository):ViewModel() {
-    private val _MealListBYName = MutableLiveData<List<Meal>>()
-    val MealListBYNmae: LiveData<List<Meal>> = _MealListBYName
+class HomeViewModel(private val mealsRepository: HomeMealsRepository):ViewModel() {
 
     private val _randomMeal = MutableLiveData<Meal>()
     val randomMeal: LiveData<Meal> = _randomMeal
 
     private val _listOfMealsByLetter = MutableLiveData<List<Meal>>()
     val listOfMealsByLetter: LiveData<List<Meal>> = _listOfMealsByLetter
-
-   /* fun getMealByName(Name: String) {
-        viewModelScope.launch {
-            val response = ApiClient.getMealByName(Name)
-            Log.d("asd->", "listofMeals:$response ")
-            _MealListBYName.value = response.meals
-
-        }
-    }*/
 
 
     fun getRandomMeal() {
@@ -48,4 +37,5 @@ class HomeViewModel(val mealsRepository: HomeMealsRepository):ViewModel() {
             _listOfMealsByLetter.value = response.meals
         }
     }
+
 }
