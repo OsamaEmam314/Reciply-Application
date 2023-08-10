@@ -1,5 +1,6 @@
 package com.reciply
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -46,12 +47,21 @@ class RecipeActivity : AppCompatActivity() {
                 homeToAbout()
             }
             R.id.action_signOut->{
-
+                hometoregister()
             }
         }
         return super.onOptionsItemSelected(item)
     }
+    private fun hometoregister() {
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("isUserLoggedin",false)
+        editor.apply()
 
+        finish()
+
+        navController.navigate(R.id.action_homeFragment_to_registerFragment)
+    }
     private fun homeToAbout() {
         navController.navigate(R.id.action_homeFragment_to_aboutFragment)
     }
