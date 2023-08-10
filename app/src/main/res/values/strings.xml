@@ -16,6 +16,8 @@ Also user can have an account to save his favorite recipes and log in is require
     <string name="popular_now">Popular Now</string>
     <string name="all_recipes">All Recipes</string>
     <string name="reciply">Reciply</string>
+    <string name="meal_title">Meal Title</string>
+    <string name="category">Category</string>
 </resources>
 
 <!--😋-->

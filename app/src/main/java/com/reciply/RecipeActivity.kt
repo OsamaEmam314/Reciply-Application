@@ -1,15 +1,17 @@
 package com.reciply
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.reciply.R
+import com.reciply.authentication.AuthActivity
 
 class RecipeActivity : AppCompatActivity() {
     lateinit var bottomNavigation:MeowBottomNavigation
@@ -55,12 +57,15 @@ class RecipeActivity : AppCompatActivity() {
     private fun hometoregister() {
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        editor.putBoolean("isUserLoggedin",false)
+        editor.putBoolean("isUserLoggedIn",false)
         editor.apply()
 
+        val intent=Intent(this, AuthActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
         finish()
 
-        navController.navigate(R.id.action_homeFragment_to_registerFragment)
+
     }
     private fun homeToAbout() {
         navController.navigate(R.id.action_homeFragment_to_aboutFragment)
