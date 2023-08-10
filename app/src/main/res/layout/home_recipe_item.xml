@@ -57,7 +57,7 @@
                 android:fontFamily="@font/quicksand_bold"
                 android:maxLines="1"
                 android:padding="5dp"
-                android:text="Meal Name"
+                android:text="@string/meal_name"
                 android:textAlignment="center"
                 android:textColor="@color/Gray_900"
                 android:textSize="12sp" />
@@ -65,11 +65,11 @@
             <TextView
                 android:id="@+id/txt_meal_category"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/quicksand_semibold"
                 android:paddingBottom="5dp"
-                android:text="Meal Category"
+                android:text="@string/meal_category"
                 android:textAlignment="center"
                 android:textColor="@color/Green_700"
                 android:textSize="10sp" />
