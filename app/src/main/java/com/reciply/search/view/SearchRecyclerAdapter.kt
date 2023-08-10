@@ -39,41 +39,10 @@ class SearchRecyclerAdapter(var context: Context, var navController: NavControll
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         Glide.with(context).load(recipesResults[position].strMealThumb)
             .placeholder(R.drawable.product_placeolder)
-//            .apply(RequestOptions().override(300, 300))
             .into(holder.imgMeal)
 
         holder.tvMealName.text = recipesResults[position].strMeal
         holder.tvCategory.text = recipesResults[position].strCategory
-
-//        holder.favIcon.setOnClickListener {
-//            // check the status (if the recipe is in fav list or not) from db
-//
-//            //  new ************
-//            viewModel.insertRecipe(recipesResults[position])
-//            viewModel.insertIntoFavList(UserFavList(userId, recipesResults[position].idMeal))
-//
-////            viewModel.checkRecipeExists(recipesResults[position].idMeal)
-////            viewModel.isExists.observe(owner){
-////                if (it){
-////                    Log.d("SearchAdapter", "onBindViewHolder: $it recipe is already in meal table")
-////                }else{
-////                    Log.d("SearchAdapter", "onBindViewHolder: $it added **")
-////                    viewModel.insertRecipe(recipesResults[position])
-////                    viewModel.checkFavRecipe(userId, recipesResults[position].idMeal)
-////                    viewModel.isFav.observe(owner){
-////                        if(!it){
-////                            Log.d("SearchAdapter", "onBindViewHolder: is fav $it")
-//////                            viewModel.insertIntoFavList(UserFavList(userId, recipesResults[position].idMeal))
-////                        }
-////                    }
-//
-////                }
-////
-////            }
-////            viewModel.insertRecipe(recipesResults[position])
-////            viewModel.insertIntoFavList(UserFavList(userId, recipesResults[position].idMeal))
-////                viewModel.deleteFromFavList(UserFavList(userId, recipesResults[position].idMeal))
-//        }
 
         holder.itemView.setOnClickListener {
            val action =
