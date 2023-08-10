@@ -11,34 +11,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginLeft="0dp">
+        android:layout_marginRight="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/Green_800"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
             android:theme="@style/colorofOptionMenu"
             app:popupTheme="@style/OptionMenuText"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/white" />
+            app:titleTextAppearance="@style/OptionMenuText"
+            app:titleTextColor="@color/Green_700">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/flying_bird"
+                android:text="@string/reciply"
+                android:textColor="@color/Green_700"
+                android:textSize="20sp"/>
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-        android:layout_below="@id/appBarLayout">
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/recipeNavHost"
-        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph_recipe" />
-</ScrollView>
+        android:layout_below="@id/appBarLayout">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/recipeNavHost"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph_recipe" />
+    </ScrollView>
 
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
@@ -46,8 +59,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:mbn_circleColor="@color/Green_600"
         app:mbn_backgroundBottomColor="#ffffff"
+        app:mbn_circleColor="@color/Green_600"
         app:mbn_countBackgroundColor="#ff6f00"
         app:mbn_countTextColor="#ffffff"
         app:mbn_defaultIconColor="@color/Green_600"
