@@ -12,10 +12,6 @@ class HomeVMFactory(val mealsRepository: HomeMealsRepository):ViewModelProvider.
 
         }
 
-//        else if(modelClass.isAssignableFrom(SearchViewModel::class.java)){
-//            SearchViewModel(mealsRepository) as T
-//        }
-
         else{
             throw IllegalArgumentException("ViewModel class not found")
         }

@@ -80,9 +80,6 @@ class HomeFragment : Fragment() {
         viewModel.listMealsByLetter()
 
         viewModel.listOfMealsByLetter.observe(viewLifecycleOwner){ it ->
-            /*while(it==null){
-                viewModel.listMealsByLetter()
-            }*/
             mealAdapter= RecipeItemAdapter(it)
             rv.adapter=mealAdapter
             mealAdapter.onItemClick={
