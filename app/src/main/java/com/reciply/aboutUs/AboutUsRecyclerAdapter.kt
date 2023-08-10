@@ -1,4 +1,4 @@
-package com.reciply
+package com.reciply.aboutUs
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.reciply
+package com.reciply.aboutUs
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
