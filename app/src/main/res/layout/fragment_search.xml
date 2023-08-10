@@ -45,7 +45,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textCursorDrawable="@drawable/edit_text_cursor_color"
-            android:textSelectHandle="@color/Green_700" />
+            android:textSelectHandle="@color/Green_700"
+            android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionDone"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
