@@ -1,5 +1,4 @@
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,7 +20,6 @@ class HomeViewModel(private val mealsRepository: HomeMealsRepository):ViewModel(
     fun getRandomMeal() {
         viewModelScope.launch {
             val rand = mealsRepository.getRemoteRandomMeal()
-            Log.d("random->", "Random Meal:${rand.meals[0]} ")
             _randomMeal.value=rand.meals[0]
         }
     }
